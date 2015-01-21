@@ -9,7 +9,7 @@
 
 	<parent>
 		<groupId>edu.pitt.sis.infsci2711</groupId>
-		<artifactId>main</artifactId>
+		<artifactId>multidbskeywordsearchrserver-main</artifactId>
 		<version>0.1-SNAPSHOT</version>
 	</parent>
 
