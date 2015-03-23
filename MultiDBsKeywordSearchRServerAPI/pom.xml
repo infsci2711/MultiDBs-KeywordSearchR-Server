@@ -48,7 +48,7 @@
 		</dependency>
 		<dependency>
 			<groupId>edu.pitt.sis.infsci2711</groupId>
-			<artifactId>MultiDBs-KeywordSearchR-Server</artifactId>
+			<artifactId>multidbskeywordsearchrserver</artifactId>
 			<version>0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
@@ -79,7 +79,7 @@
                             <transformer
                                 implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
                             <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-			                	<mainClass>edu.pitt.sis.infsci2711.MultiDBs-KeywordSearchR-Server</mainClass>
+			                	<mainClass>edu.pitt.sis.infsci2711.multidbskeywordsearchrserver</mainClass>
 			                </transformer>
                         </transformers> 
                         <filters>
