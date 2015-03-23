@@ -52,8 +52,7 @@
 			<version>0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
-</project>
-<build>
+	<build>
 	<plugins>
 				
 		<plugin>
@@ -100,3 +99,5 @@
 
 	</plugins>
 </build>
+</project>
+
