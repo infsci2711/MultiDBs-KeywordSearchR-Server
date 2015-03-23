@@ -48,7 +48,7 @@
 		</dependency>
 		<dependency>
 			<groupId>edu.pitt.sis.infsci2711</groupId>
-			<artifactId>tutorialserver</artifactId>
+			<artifactId>MultiDBs-KeywordSearchR-Server</artifactId>
 			<version>0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
