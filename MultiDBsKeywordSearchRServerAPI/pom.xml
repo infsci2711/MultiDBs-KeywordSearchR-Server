@@ -35,26 +35,21 @@
 	</dependencyManagement>
 
 	<dependencies>
-
 		<dependency>
 			<groupId>org.glassfish.jersey.containers</groupId>
-			<artifactId>jersey-container-servlet-core</artifactId>
+			<artifactId>jersey-container-servlet</artifactId>
 			<version>${jersey.version}</version>
-			<!-- use the following artifactId if you don't need servlet 2.x compatibility -->
-			<!-- artifactId>jersey-container-servlet</artifactId -->
 		</dependency>
 
 		<dependency>
-			<groupId>org.eclipse.jetty</groupId>
-			<artifactId>jetty-server</artifactId>
-			<version>${jettyVersion}</version>
+			<groupId>edu.pitt.sis.infsci2711</groupId>
+			<artifactId>multidbsutils</artifactId>
+			<version>0.1-SNAPSHOT</version>
 		</dependency>
-
 		<dependency>
-			<groupId>org.eclipse.jetty</groupId>
-			<artifactId>jetty-servlet</artifactId>
-			<version>${jettyVersion}</version>
+			<groupId>edu.pitt.sis.infsci2711</groupId>
+			<artifactId>tutorialserver</artifactId>
+			<version>0.1-SNAPSHOT</version>
 		</dependency>
-
 	</dependencies>
 </project>
