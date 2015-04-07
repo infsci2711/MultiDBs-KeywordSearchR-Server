@@ -4,28 +4,31 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 
-public class Person {
+public class Index {
 
 	private int id;
 	private String dbTerm;
 	private String databaseName;
 	private String tableName;
+	private String columnName;
 	
-	public Person() {
+	public Index() {
 		
 	}
 	
-	public Person(final String dbTerm, final String databaseName, final String tableName) {
+	public Index(final String dbTerm, final String databaseName, final String tableName, final String columnName) {
 		this.setTerm(dbTerm);
 		this.setDatabaseName(databaseName);
 		this.setTableName(tableName);
+		this.setColumnName(columnName);
 	}
 	
-	public Person(final int id, final String dbTerm, final String databaseName, final String tableName) {
+	public Index(final int id, final String dbTerm, final String databaseName, final String tableName, final String columnName) {
 		this.setId(id);
 		this.setTerm(dbTerm);
 		this.setDatabaseName(databaseName);
 		this.setTableName(tableName);
+		this.setColumnName(columnName);
 	}
 
 	public int getId() {
@@ -48,6 +51,10 @@ public class Person {
 		return tableName;
 	}
 	
+	public String getColumnName() {
+		return columnName;
+	}
+	
 	public void setTerm(final String dbTerm) {
 		this.dbTerm = dbTerm;
 	}
@@ -58,5 +65,9 @@ public class Person {
 	
 	public void setDatabaseName(final String databaseName) {
 		this.databaseName = databaseName;
+	}
+	
+	public void setColumnName(final String columnName) {
+		this.columnName = columnName;
 	}
 }

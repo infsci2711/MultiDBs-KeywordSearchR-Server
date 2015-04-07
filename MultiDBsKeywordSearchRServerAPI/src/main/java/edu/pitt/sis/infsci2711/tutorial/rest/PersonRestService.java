@@ -15,8 +15,8 @@ import javax.ws.rs.core.Response;
 
 import edu.pitt.sis.infsci2711.tutorial.business.PersonService;
 import edu.pitt.sis.infsci2711.tutorial.models.PersonDBModel;
-import edu.pitt.sis.infsci2711.tutorial.viewModels.Person;
-@Path("Person/")
+import edu.pitt.sis.infsci2711.tutorial.viewModels.Index;
+@Path("Index/")
 
 public class PersonRestService {
 
@@ -30,9 +30,9 @@ public class PersonRestService {
 		try {
 			personsDB = personService.getAll();
 		
-			List<Person> persons = convertDbToViewModel(personsDB);
+			List<Index> persons = convertDbToViewModel(personsDB);
 			
-			GenericEntity<List<Person>> entity = new GenericEntity<List<Person>>(persons) {};
+			GenericEntity<List<Index>> entity = new GenericEntity<List<Index>>(persons) {};
 			
 			return Response.status(200).entity(entity).build();
 		} catch (Exception e) {
@@ -54,8 +54,8 @@ public class PersonRestService {
 			personsDB = personService.findById(dbTerm);
 			if (personsDB != null) {
 				
-			List<Person> persons = convertDbToViewModel(personsDB);
-			GenericEntity<List<Person>> entity = new GenericEntity<List<Person>>(persons) {};
+			List<Index> persons = convertDbToViewModel(personsDB);
+			GenericEntity<List<Index>> entity = new GenericEntity<List<Index>>(persons) {};
 			return Response.status(200).entity(entity).build();
 			
 			}
@@ -70,14 +70,14 @@ public class PersonRestService {
 	@PUT
     @Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response addPerson(final Person person) {
+	public Response addPerson(final Index person) {
 		
 		PersonService personService = new PersonService();
 		
 		try {
 			PersonDBModel personsDB = personService.add(convertViewModelToDB(person));
 		
-			Person personInserted = convertDbToViewModel(personsDB);
+			Index personInserted = convertDbToViewModel(personsDB);
 			
 			return Response.status(200).entity(personInserted).build();
 		} catch (Exception e) {
@@ -86,12 +86,12 @@ public class PersonRestService {
 		
 	}
 
-	private PersonDBModel convertViewModelToDB(final Person person) {
-		return new PersonDBModel(person.getTerm(), person.getDatabaseName(), person.getTableName());
+	private PersonDBModel convertViewModelToDB(final Index index) {
+		return new PersonDBModel(index.getTerm(), index.getDatabaseName(), index.getTableName(), index.getColumnName());
 	}
 
-	private List<Person> convertDbToViewModel(final List<PersonDBModel> personsDB) {
-		List<Person> result = new ArrayList<Person>();
+	private List<Index> convertDbToViewModel(final List<PersonDBModel> personsDB) {
+		List<Index> result = new ArrayList<Index>();
 		for(PersonDBModel personDB : personsDB) {
 			result.add(convertDbToViewModel(personDB));
 		}
@@ -99,7 +99,7 @@ public class PersonRestService {
 		return result;
 	}
 	
-	private Person convertDbToViewModel(final PersonDBModel personDB) {
-		return new Person(personDB.getId(), personDB.getTerm(), personDB.getDatabaseName(), personDB.getTableName());
+	private Index convertDbToViewModel(final PersonDBModel personDB) {
+		return new Index(personDB.getId(), personDB.getTerm(), personDB.getDatabaseName(), personDB.getTableName(), personDB.getColumnName());
 	}
 }

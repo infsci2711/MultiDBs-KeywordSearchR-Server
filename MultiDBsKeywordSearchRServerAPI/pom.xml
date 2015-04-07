@@ -46,6 +46,7 @@
 			<artifactId>multidbsutils</artifactId>
 			<version>0.1-SNAPSHOT</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>edu.pitt.sis.infsci2711</groupId>
 			<artifactId>multidbskeywordsearchrserver</artifactId>
