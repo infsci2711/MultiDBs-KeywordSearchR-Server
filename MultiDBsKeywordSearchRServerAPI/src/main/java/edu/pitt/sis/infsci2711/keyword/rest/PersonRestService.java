@@ -1,4 +1,4 @@
-package edu.pitt.sis.infsci2711.tutorial.rest;
+package edu.pitt.sis.infsci2711.keyword.rest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,9 +13,10 @@ import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import edu.pitt.sis.infsci2711.tutorial.business.PersonService;
-import edu.pitt.sis.infsci2711.tutorial.models.PersonDBModel;
-import edu.pitt.sis.infsci2711.tutorial.viewModels.Index;
+import edu.pitt.sis.infsci2711.keyword.business.PersonService;
+import edu.pitt.sis.infsci2711.keyword.models.PersonDBModel;
+import edu.pitt.sis.infsci2711.keyword.viewModels.Index;
+import edu.pitt.sis.infsci2711.keyword.viewModels.haoge;
 @Path("Index/")
 
 public class PersonRestService {
@@ -85,6 +86,13 @@ public class PersonRestService {
 		}
 		
 	}
+	
+	public Response generateSQL(final haoge db) {
+		
+		return Response.status(200).entity("").build();
+		
+	}
+	
 
 	private PersonDBModel convertViewModelToDB(final Index index) {
 		return new PersonDBModel(index.getTerm(), index.getDatabaseName(), index.getTableName(), index.getColumnName());

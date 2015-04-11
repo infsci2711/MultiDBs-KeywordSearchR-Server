@@ -1,4 +1,4 @@
-package edu.pitt.sis.infsci2711.tutorial.utils;
+package edu.pitt.sis.infsci2711.keyword.utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

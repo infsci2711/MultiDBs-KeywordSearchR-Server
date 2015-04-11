@@ -1,4 +1,4 @@
-package edu.pitt.sis.infsci2711.tutorial.dao;
+package edu.pitt.sis.infsci2711.keyword.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -7,8 +7,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.pitt.sis.infsci2711.tutorial.models.PersonDBModel;
-import edu.pitt.sis.infsci2711.tutorial.utils.JdbcUtil;
+import edu.pitt.sis.infsci2711.keyword.models.PersonDBModel;
+import edu.pitt.sis.infsci2711.keyword.utils.JdbcUtil;
 
 public class PersonDAO {
 

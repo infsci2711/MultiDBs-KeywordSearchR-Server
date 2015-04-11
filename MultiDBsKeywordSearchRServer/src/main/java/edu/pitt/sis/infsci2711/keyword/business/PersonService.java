@@ -1,10 +1,10 @@
-package edu.pitt.sis.infsci2711.tutorial.business;
+package edu.pitt.sis.infsci2711.keyword.business;
 
 import java.sql.SQLException;
 import java.util.List;
 
-import edu.pitt.sis.infsci2711.tutorial.dao.PersonDAO;
-import edu.pitt.sis.infsci2711.tutorial.models.PersonDBModel;
+import edu.pitt.sis.infsci2711.keyword.dao.PersonDAO;
+import edu.pitt.sis.infsci2711.keyword.models.PersonDBModel;
 
 public class PersonService {
 

@@ -1,10 +1,6 @@
-package edu.pitt.sis.infsci2711.tutorial.viewModels;
+package edu.pitt.sis.infsci2711.keyword.models;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement
-
-public class Index {
+public class PersonDBModel {
 
 	private int id;
 	private String dbTerm;
@@ -12,18 +8,18 @@ public class Index {
 	private String tableName;
 	private String columnName;
 	
-	public Index() {
+	public PersonDBModel() {
 		
 	}
 	
-	public Index(final String dbTerm, final String databaseName, final String tableName, final String columnName) {
+	public PersonDBModel(final String dbTerm, final String databaseName, final String tableName, final String columnName) {
 		this.setTerm(dbTerm);
 		this.setDatabaseName(databaseName);
 		this.setTableName(tableName);
 		this.setColumnName(columnName);
 	}
 	
-	public Index(final int id, final String dbTerm, final String databaseName, final String tableName, final String columnName) {
+	public PersonDBModel(final int id, final String dbTerm, final String databaseName, final String tableName, final String columnName) {
 		this.setId(id);
 		this.setTerm(dbTerm);
 		this.setDatabaseName(databaseName);

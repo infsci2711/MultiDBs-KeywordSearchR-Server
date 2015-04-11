@@ -1,4 +1,4 @@
-package edu.pitt.sis.infsci2711.tutorial.rest;
+package edu.pitt.sis.infsci2711.keyword.rest;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
