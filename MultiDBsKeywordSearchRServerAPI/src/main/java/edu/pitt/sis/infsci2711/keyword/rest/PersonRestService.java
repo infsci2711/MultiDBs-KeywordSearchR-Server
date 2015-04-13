@@ -14,9 +14,11 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import edu.pitt.sis.infsci2711.keyword.business.PersonService;
-import edu.pitt.sis.infsci2711.keyword.models.PersonDBModel;
+import edu.pitt.sis.infsci2711.keyword.models.*;
+import edu.pitt.sis.infsci2711.keyword.viewModels.DatasourceModel;
 import edu.pitt.sis.infsci2711.keyword.viewModels.Index;
 import edu.pitt.sis.infsci2711.keyword.viewModels.haoge;
+import edu.pitt.sis.infsci2711.datasource.viewModels.*;
 @Path("Index/")
 
 public class PersonRestService {
@@ -67,31 +69,83 @@ public class PersonRestService {
 		}
 		
 	}
-	
+	/*
 	@PUT
     @Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response addPerson(final Index person) {
+	public Response addDatasource(final DatasourceModel datasource) {
 		
 		PersonService personService = new PersonService();
 		
 		try {
-			PersonDBModel personsDB = personService.add(convertViewModelToDB(person));
+			DatasourceDBModel datasourceDB = personService.add(convertVMToDB(datasource));
 		
-			Index personInserted = convertDbToViewModel(personsDB);
+			DatasourceModel datasourceInserted = convertDbToVM(datasourceDB);
 			
-			return Response.status(200).entity(personInserted).build();
+			return Response.status(200).entity(datasourceInserted).build();
 		} catch (Exception e) {
 			return Response.status(500).build();
 		}
 		
 	}
+	*/
 	
-	public Response generateSQL(final haoge db) {
-		
-		return Response.status(200).entity("").build();
-		
+	
+	private DatasourceDBModel convertVMToDB(final DatasourceModel dbsource) {
+		DatasourceIdsDBModel dbDBmodel = new DatasourceIdsDBModel(dbsource.getDatasource().getId(),dbsource.getDatasource().getDbName(),dbsource.getDatasource().getTitle());
+		List<TableDBModel> tabDBmodel = tabVMToDB(dbsource.getTables());
+		return new DatasourceDBModel(dbDBmodel, tabDBmodel);
 	}
+
+	private List<TableDBModel> tabVMToDB(final List<TableViewModel> tabs) {
+		List<TableDBModel> result = new ArrayList<TableDBModel>();
+		for(TableViewModel tab : tabs) {
+			result.add(new TableDBModel(tab.getTableName(), colVMToDB(tab.getColumns())));
+		}
+		
+		return result;
+	}
+	
+	private List<ColumnDBModel> colVMToDB(final List<ColumnViewModel> cols) {
+		List<ColumnDBModel> result = new ArrayList<ColumnDBModel>();
+		for(ColumnViewModel col : cols) {
+			result.add(new ColumnDBModel(col.getColumnName()));
+		}
+		
+		return result;
+	}
+	
+	/*
+	private DatasourceDBModel convertDBToVM(final DatasourceModel dbsource) {
+		DatasourceIdsDBModel dbDBmodel = new DatasourceIdsDBModel(dbsource.getDatasource().getId(),dbsource.getDatasource().getDbName(),dbsource.getDatasource().getTitle());
+		List<TableDBModel> tabDBmodel = tabVMToDB(dbsource.getTables());
+		return new DatasourceDBModel(dbDBmodel, tabDBmodel);
+	}
+
+	private List<TableDBModel> tabVMToDB(final List<TableViewModel> tabs) {
+		List<TableDBModel> result = new ArrayList<TableDBModel>();
+		for(TableViewModel tab : tabs) {
+			result.add(new TableDBModel(tab.getTableName(), colVMToDB(tab.getColumns())));
+		}
+		
+		return result;
+	}
+	
+	private List<ColumnDBModel> colVMToDB(final List<ColumnViewModel> cols) {
+		List<ColumnDBModel> result = new ArrayList<ColumnDBModel>();
+		for(ColumnViewModel col : cols) {
+			result.add(new ColumnDBModel(col.getColumnName()));
+		}
+		
+		return result;
+	}
+	*/
+	
+	
+	private Index convertDbToVM(final PersonDBModel personDB) {
+		return new Index(personDB.getId(), personDB.getTerm(), personDB.getDatabaseName(), personDB.getTableName(), personDB.getColumnName());
+	}
+	
 	
 
 	private PersonDBModel convertViewModelToDB(final Index index) {

@@ -3,8 +3,9 @@ package edu.pitt.sis.infsci2711.keyword.business;
 import java.sql.SQLException;
 import java.util.List;
 
+
 import edu.pitt.sis.infsci2711.keyword.dao.PersonDAO;
-import edu.pitt.sis.infsci2711.keyword.models.PersonDBModel;
+import edu.pitt.sis.infsci2711.keyword.models.*;
 
 public class PersonService {
 
@@ -20,8 +21,8 @@ public class PersonService {
 		return result;
 	}
 	
-	public PersonDBModel add(final PersonDBModel person) throws SQLException, Exception {
-		PersonDAO.save(person);
-		return person;
+	public DatasourceDBModel add(final DatasourceDBModel datasource) throws SQLException, Exception {
+		PersonDAO.save(datasource);
+		return datasource;
 	}
 }

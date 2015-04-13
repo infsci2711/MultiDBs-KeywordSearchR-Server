@@ -7,7 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.pitt.sis.infsci2711.keyword.models.PersonDBModel;
+import edu.pitt.sis.infsci2711.keyword.models.*;
 import edu.pitt.sis.infsci2711.keyword.utils.JdbcUtil;
 
 public class PersonDAO {
@@ -106,7 +106,7 @@ public class PersonDAO {
 		
 	}
 	
-	public static int save(final PersonDBModel person) throws SQLException, Exception {
+	public static int save(final DatasourceDBModel person) throws SQLException, Exception {
 		
 		try (Connection connection = JdbcUtil.getConnection()) {
 			
