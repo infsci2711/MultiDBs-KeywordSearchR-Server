@@ -9,6 +9,10 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -18,6 +22,8 @@ import edu.pitt.sis.infsci2711.keyword.models.*;
 import edu.pitt.sis.infsci2711.keyword.viewModels.DatasourceModel;
 import edu.pitt.sis.infsci2711.keyword.viewModels.Index;
 import edu.pitt.sis.infsci2711.keyword.viewModels.haoge;
+import edu.pitt.sis.infsci2711.keyword.viewModels.QueryResultViewModel;
+import edu.pitt.sis.infsci2711.keyword.viewModels.QueryViewModel;
 import edu.pitt.sis.infsci2711.datasource.viewModels.*;
 @Path("Index/")
 
@@ -69,6 +75,43 @@ public class PersonRestService {
 		}
 		
 	}
+	
+	//send query to PrestoDB 
+	@PUT
+    @Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response addPerson(QueryViewModel query) {				
+		try {			  
+			//PUT request to presto
+			Client client= ClientBuilder.newClient();
+			WebTarget target = client.target("http://54.174.80.167:7654/");
+            
+			target = target.path("Query/");
+            QueryViewModel QueryViewModel=new QueryViewModel();
+            
+            QueryViewModel.setQuery("select * from 0.person");
+            //PUT Request from Jersey Client Example. pass QueryViewModel instance
+            Response response = target.request(MediaType.APPLICATION_JSON)
+             .put(Entity.entity(QueryViewModel, MediaType.APPLICATION_JSON),Response.class);
+           
+            System.out.println(response);
+            if(response.getStatus() == 200) {
+                   System.out.println("put request using Json is Success");
+            }
+            QueryResultViewModel qresult=response.readEntity(QueryResultViewModel.class);	
+            String[] columnNames=qresult.getSchema().getColumnNames();
+            //System.out.println(columnNames[0]);
+			return Response.status(200).entity(qresult).build();
+			
+		} catch (Exception e) {
+			return Response.status(500).build();
+		}
+		
+	}
+
+	
+	
+	
 	/*
 	@PUT
     @Produces(MediaType.APPLICATION_JSON)
