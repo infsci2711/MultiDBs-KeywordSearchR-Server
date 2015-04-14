@@ -17,6 +17,11 @@ import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import edu.pitt.sis.infsci2711.multidbs.utils.JerseyClientUtil;
+import edu.pitt.sis.infsci2711.multidbs.utils.PropertiesManager;
 import edu.pitt.sis.infsci2711.keyword.business.PersonService;
 import edu.pitt.sis.infsci2711.keyword.models.*;
 import edu.pitt.sis.infsci2711.keyword.viewModels.DatasourceModel;
@@ -27,8 +32,10 @@ import edu.pitt.sis.infsci2711.keyword.viewModels.RowViewModel;
 import edu.pitt.sis.infsci2711.datasource.viewModels.*;
 @Path("Index/")
 
-public class PersonRestService {
+public class KeywordRestService {
 
+	final Logger logger = LogManager.getLogger(KeywordRestService.class.getName());
+	
 	@GET
     @Produces(MediaType.APPLICATION_JSON)
 	public Response allPersons() {
@@ -45,7 +52,8 @@ public class PersonRestService {
 			
 			return Response.status(200).entity(entity).build();
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+		//	System.out.println(e.getMessage());
+			logger.error(e.getMessage(), e);
 			return Response.status(500).build();
 		}
 		
@@ -85,17 +93,21 @@ public class PersonRestService {
 				PersonService personService = new PersonService();
 				try {			  
 					//PUT request to presto
-					Client client= ClientBuilder.newClient();
-					WebTarget target = client.target("http://54.174.80.167:7654/");
+										
+					//Client client= ClientBuilder.newClient();
+					//WebTarget target = client.target("http://54.174.80.167:7654/");
 		            
-					target = target.path("Query/");
+					//target = target.path("Query/");
 		            QueryViewModel QueryViewModel=new QueryViewModel();
 		            
 		            QueryViewModel.setQuery(q);
 		            //PUT Request from Jersey Client Example. pass QueryViewModel instance
-		            Response response = target.request(MediaType.APPLICATION_JSON)
-		             .put(Entity.entity(QueryViewModel, MediaType.APPLICATION_JSON),Response.class);
-		           
+		            Response response = JerseyClientUtil.doPut(PropertiesManager.getInstance().getStringProperty("http://54.174.80.167:7654"), PropertiesManager.getInstance().getStringProperty("/Query/"), QueryViewModel);
+		            
+
+		            //Response response = target.request(MediaType.APPLICATION_JSON)
+		            // .put(Entity.entity(QueryViewModel, MediaType.APPLICATION_JSON),Response.class);
+		            
 		            System.out.println(response);
 		            if(response.getStatus() == 200) {
 		                   System.out.println("put request using Json is Success");
@@ -129,7 +141,7 @@ public class PersonRestService {
 		PersonService personService = new PersonService();
 		
 		try {
-			/*
+			
 			//TEST
 			List<ColumnViewModel> cvmlist = new ArrayList<ColumnViewModel>();
 			cvmlist.add(new ColumnViewModel("id"));
@@ -139,8 +151,8 @@ public class PersonRestService {
 			tvmlist.add(new TableViewModel("person", cvmlist));
 			DatasourceModel testdb = new DatasourceModel(0, "A", "A", 1, "A", "A", "A","A","A", tvmlist);
 			//TEST
-			*/
-			DatasourceDBModel testdbmodel = convertVMToDB(datasource);
+			
+			DatasourceDBModel testdbmodel = convertVMToDB(testdb);
 			List<querydidtab> sqlSet = new ArrayList<querydidtab>();
 			sqlSet = personService.add(testdbmodel);
 			

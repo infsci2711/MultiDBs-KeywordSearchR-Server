@@ -4,11 +4,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import edu.pitt.sis.infsci2711.keyword.dao.PersonDAO;
 import edu.pitt.sis.infsci2711.keyword.models.*;
 
 public class PersonService {
-
+	final Logger logger = LogManager.getLogger(PersonService.class.getName());
+	
 	public List<PersonDBModel> getAll() throws SQLException, Exception {
 		List<PersonDBModel> result = PersonDAO.findAll();
 		
@@ -28,7 +32,7 @@ public class PersonService {
 		String tempsql;
 		if(!isInsert) //save did
 		{
-			System.out.println("did no insert");
+			logger.info("Didn't insert");
 			
 		}else
 		{
