@@ -21,7 +21,6 @@ import edu.pitt.sis.infsci2711.keyword.business.PersonService;
 import edu.pitt.sis.infsci2711.keyword.models.*;
 import edu.pitt.sis.infsci2711.keyword.viewModels.DatasourceModel;
 import edu.pitt.sis.infsci2711.keyword.viewModels.Index;
-import edu.pitt.sis.infsci2711.keyword.viewModels.haoge;
 import edu.pitt.sis.infsci2711.keyword.viewModels.QueryResultViewModel;
 import edu.pitt.sis.infsci2711.keyword.viewModels.QueryViewModel;
 import edu.pitt.sis.infsci2711.keyword.viewModels.RowViewModel;
@@ -78,9 +77,7 @@ public class PersonRestService {
 	}
 	
 	//send query to PrestoDB 
-			@PUT
-		    @Produces(MediaType.APPLICATION_JSON)
-			@Consumes(MediaType.APPLICATION_JSON)
+			
 			public void addIndex(String query,int db,String t) {	
 				String q=query;
 				int did=db;
@@ -122,7 +119,7 @@ public class PersonRestService {
 			}
 	
 	
-	
+	//metastore use
 	
 	@PUT
     @Produces(MediaType.APPLICATION_JSON)
@@ -132,20 +129,21 @@ public class PersonRestService {
 		PersonService personService = new PersonService();
 		
 		try {
+			/*
 			//TEST
 			List<ColumnViewModel> cvmlist = new ArrayList<ColumnViewModel>();
-			cvmlist.add(new ColumnViewModel("city"));
-			cvmlist.add(new ColumnViewModel("state"));
+			cvmlist.add(new ColumnViewModel("id"));
+			cvmlist.add(new ColumnViewModel("firstname"));
+			cvmlist.add(new ColumnViewModel("lastname"));
 			List<TableViewModel> tvmlist = new ArrayList<TableViewModel>();
-			tvmlist.add(new TableViewModel("address", cvmlist));
-			DatasourceIdsViewModel didvm = new DatasourceIdsViewModel(8, "faculty", "faculty");
-			DatasourceModel testdb = new DatasourceModel(didvm, tvmlist);
-			
+			tvmlist.add(new TableViewModel("person", cvmlist));
+			DatasourceModel testdb = new DatasourceModel(0, "A", "A", 1, "A", "A", "A","A","A", tvmlist);
 			//TEST
-			DatasourceDBModel testdbmodel = convertVMToDB(testdb);
+			*/
+			DatasourceDBModel testdbmodel = convertVMToDB(datasource);
 			List<querydidtab> sqlSet = new ArrayList<querydidtab>();
 			sqlSet = personService.add(testdbmodel);
-			//System.out.println(sqlSet.size());
+			
 			if(sqlSet.size()==0)
 			{
 				System.out.println("Datasource already exists");
@@ -170,9 +168,9 @@ public class PersonRestService {
 	
 	
 	private DatasourceDBModel convertVMToDB(final DatasourceModel dbsource) {
-		DatasourceIdsDBModel dbDBmodel = new DatasourceIdsDBModel(dbsource.getDatasource().getId(),dbsource.getDatasource().getDbName(),dbsource.getDatasource().getTitle());
+		//DatasourceIdsDBModel dbDBmodel = new DatasourceIdsDBModel(dbsource.getDatasource().getId(),dbsource.getDatasource().getDbName(),dbsource.getDatasource().getTitle());
 		List<TableDBModel> tabDBmodel = tabVMToDB(dbsource.getTables());
-		return new DatasourceDBModel(dbDBmodel, tabDBmodel);
+		return new DatasourceDBModel(dbsource.getId(), tabDBmodel);
 	}
 
 	private List<TableDBModel> tabVMToDB(final List<TableViewModel> tabs) {

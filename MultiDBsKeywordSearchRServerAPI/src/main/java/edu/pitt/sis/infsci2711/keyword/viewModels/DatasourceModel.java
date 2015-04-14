@@ -4,42 +4,130 @@ import java.util.List;
 
 import edu.pitt.sis.infsci2711.datasource.viewModels.*;
 
+
 public class DatasourceModel {
+	private int id;
+	private String dbType;
+	private String  ipAddress;
+	private int port;
+	private String username;
+	private String password;
+	private String dbName;
+	private String title;
+	private String description;
 	
-	private DatasourceIdsViewModel datasourceInfo;
-	private List<TableViewModel> tableSet;
+	private List<TableViewModel> tables;
 	
-	public DatasourceModel() {
+	public DatasourceModel(){
 		
 	}
 	
-	public DatasourceModel(DatasourceIdsViewModel datasourceInfo, List<TableViewModel> tableSet) {
-		this.setDatasource(datasourceInfo);
-		this.setTables(tableSet);
+	public DatasourceModel(final String dbType, final String ipAdress, final int port,
+			final String username, final String password, final String dbName, 
+			String title, String descripiton){
+		this.setDbType(dbType);
+		this.setIpAddress(ipAdress);
+		this.setPort(port);
+		this.setUsername(username);
+		this.setPassword(password);
+		this.setDbName(dbName);
+		this.setTitle(title);
+		this.setDescription(descripiton);
 	}
-
+	
+	public DatasourceModel(int id, final String dbType, final String ipAdress, final int port,
+			final String username, final String password, final String dbName, 
+			String title, String descripiton, List<TableViewModel> tables) {
+		this.setId(id);
+		this.setDbType(dbType);
+		this.setIpAddress(ipAdress);
+		this.setPort(port);
+		this.setUsername(username);
+		this.setPassword(password);
+		this.setDbName(dbName);
+		this.setTitle(title);
+		this.setDescription(descripiton);
+		this.setTables(tables);
+	}
+	
+	
 	public int getId() {
-		return datasourceInfo.getId();
+		return id;
 	}
 
-	public void setId(final int id) {
-		datasourceInfo.setId(id);
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getDbType() {
+		return dbType;
+	}
+
+	public void setDbType(String dBtype) {
+		dbType = dBtype;
+	}
+
+	public String getIpAddress() {
+		return ipAddress;
+	}
+
+	public void setIpAddress(String iPAddress) {
+		ipAddress = iPAddress;
+	}
+
+	public int getPort() {
+		return port;
+	}
+
+	public void setPort(int port) {
+		this.port = port;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getDbName() {
+		return dbName;
+	}
+
+	public void setDbName(String dBname) {
+		dbName = dBname;
 	}
 	
+	public void setTitle(String title){
+		this.title = title;	
+	}
+	
+	public String getTitle(){
+		return this.title;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	public List<TableViewModel> getTables() {
-		return tableSet;
-	}
-	
-	public void setTables(List<TableViewModel> tableSet) {
-		this.tableSet = tableSet;
-	}
-	
-	public DatasourceIdsViewModel getDatasource() {
-		return datasourceInfo;
-	}
-	
-	public void setDatasource(DatasourceIdsViewModel datasourceInfo) {
-		this.datasourceInfo = datasourceInfo;
+		return tables;
 	}
 
+	public void setTables(List<TableViewModel> tables) {
+		this.tables = tables;
+	}
 }

@@ -2,43 +2,36 @@ package edu.pitt.sis.infsci2711.keyword.models;
 
 import java.util.List;
 
-
 public class DatasourceDBModel {
+	private int id;
 	
-	private DatasourceIdsDBModel datasourceInfo;
-	private List<TableDBModel> tableSet;
+	private List<TableDBModel> tables;
 	
-	public DatasourceDBModel() {
+	public DatasourceDBModel(){
 		
 	}
 	
-	public DatasourceDBModel(DatasourceIdsDBModel datasourceInfo, List<TableDBModel> tableSet) {
-		this.setDatasource(datasourceInfo);
-		this.setTables(tableSet);
+	
+	public DatasourceDBModel(int id, List<TableDBModel> tables) {
+		this.setId(id);
+		this.setTables(tables);
 	}
-
+	
 	public int getId() {
-		return datasourceInfo.getId();
+		return id;
 	}
 
-	public void setId(final int id) {
-		datasourceInfo.setId(id);
+	public void setId(int id) {
+		this.id = id;
 	}
-	
+
+
+
 	public List<TableDBModel> getTables() {
-		return tableSet;
-	}
-	
-	public void setTables(List<TableDBModel> tableSet) {
-		this.tableSet = tableSet;
-	}
-	
-	public DatasourceIdsDBModel getDatasourceModel() {
-		return datasourceInfo;
-	}
-	
-	public void setDatasource(DatasourceIdsDBModel datasourceInfo) {
-		this.datasourceInfo = datasourceInfo;
+		return tables;
 	}
 
+	public void setTables(List<TableDBModel> tables) {
+		this.tables = tables;
+	}
 }
