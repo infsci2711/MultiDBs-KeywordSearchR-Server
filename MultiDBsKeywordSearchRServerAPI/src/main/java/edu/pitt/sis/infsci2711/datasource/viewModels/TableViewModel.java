@@ -4,6 +4,7 @@ package edu.pitt.sis.infsci2711.datasource.viewModels;
 import java.util.List;
 
 public class TableViewModel {
+	
 	private String tableName;
 	private List<ColumnViewModel> columns;
 	
