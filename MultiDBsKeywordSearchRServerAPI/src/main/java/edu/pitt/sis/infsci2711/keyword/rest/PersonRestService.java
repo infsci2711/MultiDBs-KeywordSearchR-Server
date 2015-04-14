@@ -81,7 +81,8 @@ public class PersonRestService {
 			@PUT
 		    @Produces(MediaType.APPLICATION_JSON)
 			@Consumes(MediaType.APPLICATION_JSON)
-			public void addPerson(querydidtab query,int db,String t) {	
+			public void addIndex(String query,int db,String t) {	
+				String q=query;
 				int did=db;
 				String table=t;
 				PersonService personService = new PersonService();
@@ -93,7 +94,7 @@ public class PersonRestService {
 					target = target.path("Query/");
 		            QueryViewModel QueryViewModel=new QueryViewModel();
 		            
-		            QueryViewModel.setQuery("select * from 0.person");
+		            QueryViewModel.setQuery(q);
 		            //PUT Request from Jersey Client Example. pass QueryViewModel instance
 		            Response response = target.request(MediaType.APPLICATION_JSON)
 		             .put(Entity.entity(QueryViewModel, MediaType.APPLICATION_JSON),Response.class);
@@ -112,8 +113,7 @@ public class PersonRestService {
 		            }
 		            
 		            personService.addIndex(did,table,columnNames[0],rows);
-		            //System.out.println(columnNames[0]);
-					//return Response.status(200).entity(qresult).build();
+		            
 					
 				} catch (Exception e) {
 					//return Response.status(500).build();
@@ -155,7 +155,7 @@ public class PersonRestService {
 				for(querydidtab subsql : sqlSet)
 				{
 					System.out.println(subsql.getSqlCommand() +" "+ subsql.getDid() + " " + subsql.getTabName());
-					addPerson(subsql,subsql.getDid(),subsql.getTabName());
+					addIndex(subsql.getSqlCommand(),subsql.getDid(),subsql.getTabName());
 				}
 			}
 			//DatasourceModel datasourceInserted = convertDbToVM(datasourceDB);
