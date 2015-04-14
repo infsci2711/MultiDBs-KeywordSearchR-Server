@@ -1,4 +1,4 @@
-USE `infsci2711_tutorial`;
+USE `mysql`;
 
 --
 -- Table structure for table `Datasource`
