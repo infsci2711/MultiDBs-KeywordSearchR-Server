@@ -1,3 +1,5 @@
+USE `infsci2711_tutorial`;
+
 --
 -- Table structure for table `Datasource`
 --
