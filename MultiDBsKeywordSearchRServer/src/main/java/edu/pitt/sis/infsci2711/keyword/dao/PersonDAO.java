@@ -2,6 +2,7 @@ package edu.pitt.sis.infsci2711.keyword.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -106,12 +107,34 @@ public class PersonDAO {
 		
 	}
 	
-	public static int save(final DatasourceDBModel person) throws SQLException, Exception {
+	public static boolean save(final DatasourceDBModel dbsource) throws SQLException, Exception {
 		
 		try (Connection connection = JdbcUtil.getConnection()) {
+			boolean isInsert = true;
+			int did = dbsource.getId();
+			try (Statement statementj = connection.createStatement()){
+				String sqlj = "SELECT * FROM Datasource WHERE did = " + did ;
+				//System.out.println(did);
+				ResultSet isInsertset = statementj.executeQuery(sqlj);
+				ResultSetMetaData rsmd = isInsertset.getMetaData();
+				int columnsNumber = rsmd.getColumnCount();
+				//System.out.println(isInsertset.getFetchSize());
+				if(isInsertset.next())
+				{
+					isInsert = false;
+					//System.out.println("WRONG");
+				}else
+				{
+					String sql = "INSERT INTO Datasource (did) VALUES (" + did + ")";
+					try (Statement statement = connection.createStatement()){
+						statement.executeUpdate(sql);
+					}
+				}
+			}
 			
+			return isInsert;
 			
-				
+			/*
 				String sql1 = "SHOW TABLES";
 				try (Statement statement = connection.createStatement()){
 					int res = 0;
@@ -148,22 +171,7 @@ public class PersonDAO {
 						} i++;
 					}
 					return i;
-				}
-			//String sql = String.format("INSERT INTO Person (firstName, lastName) VALUES ('%s', '%s')", person.getFirstName(), person.getLastName());
-			/*
-			String sql = "INSERT INTO `Index` (dbTerm, databaseName, tableName) VALUES ('"+ person.getTerm() +"', '"+ person.getDatabaseName() +"', '"+ person.getTableName() +"')";
-			try (Statement statement = connection.createStatement()){
-				
-				int res = statement.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
-				
-				ResultSet rs = statement.getGeneratedKeys();
-				if (rs.next()){
-					person.setId(rs.getInt(1));
-				}
-				
-				return res;
-			}
-		*/
+				}*/
 		}
 	}
 	

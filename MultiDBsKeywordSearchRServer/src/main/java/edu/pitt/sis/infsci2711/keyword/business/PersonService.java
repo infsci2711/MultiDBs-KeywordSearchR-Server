@@ -1,6 +1,7 @@
 package edu.pitt.sis.infsci2711.keyword.business;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -21,8 +22,33 @@ public class PersonService {
 		return result;
 	}
 	
-	public DatasourceDBModel add(final DatasourceDBModel datasource) throws SQLException, Exception {
-		PersonDAO.save(datasource);
-		return datasource;
+	public List<querydidtab> add(final DatasourceDBModel datasource) throws SQLException, Exception {
+		
+		List<querydidtab> sqlSet = new ArrayList<querydidtab>();
+		boolean isInsert = PersonDAO.save(datasource);
+		String tempsql;
+		if(!isInsert) //save did
+		{
+			System.out.println("did no insert");
+			
+		}else
+		{
+			int didSQL = datasource.getId();
+			List<TableDBModel> tablist = new ArrayList<TableDBModel>();
+			tablist = datasource.getTables();
+			
+			for(TableDBModel tab : tablist) {
+				String tabSQL = tab.getTableName();
+				List<ColumnDBModel> collist = new ArrayList<ColumnDBModel>();
+				collist = tab.getColumns();
+				for(ColumnDBModel col : collist) {
+					String colSQL = col.getColumnName();
+					tempsql = "SELECT DISTINCT " + colSQL + " FROM " + didSQL + "." + tabSQL;
+					//System.out.println(tempsql);
+					sqlSet.add(new querydidtab(tempsql,didSQL,tabSQL));
+				}
+			}
+		}
+		return sqlSet;
 	}
 }

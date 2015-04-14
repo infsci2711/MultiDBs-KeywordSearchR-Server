@@ -76,6 +76,7 @@ public class PersonRestService {
 		
 	}
 	
+	/*
 	//send query to PrestoDB 
 	@PUT
     @Produces(MediaType.APPLICATION_JSON)
@@ -100,7 +101,7 @@ public class PersonRestService {
             }
             QueryResultViewModel qresult=response.readEntity(QueryResultViewModel.class);	
             String[] columnNames=qresult.getSchema().getColumnNames();
-            //System.out.println(columnNames[0]);
+            System.out.println(columnNames[0]);
 			return Response.status(200).entity(qresult).build();
 			
 		} catch (Exception e) {
@@ -108,11 +109,11 @@ public class PersonRestService {
 		}
 		
 	}
-
+	*/
 	
 	
 	
-	/*
+	
 	@PUT
     @Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -121,17 +122,40 @@ public class PersonRestService {
 		PersonService personService = new PersonService();
 		
 		try {
-			DatasourceDBModel datasourceDB = personService.add(convertVMToDB(datasource));
-		
-			DatasourceModel datasourceInserted = convertDbToVM(datasourceDB);
+			//TEST
+			List<ColumnViewModel> cvmlist = new ArrayList<ColumnViewModel>();
+			cvmlist.add(new ColumnViewModel("city"));
+			cvmlist.add(new ColumnViewModel("state"));
+			List<TableViewModel> tvmlist = new ArrayList<TableViewModel>();
+			tvmlist.add(new TableViewModel("address", cvmlist));
+			DatasourceIdsViewModel didvm = new DatasourceIdsViewModel(8, "faculty", "faculty");
+			DatasourceModel testdb = new DatasourceModel(didvm, tvmlist);
 			
-			return Response.status(200).entity(datasourceInserted).build();
+			//TEST
+			DatasourceDBModel testdbmodel = convertVMToDB(testdb);
+			List<querydidtab> sqlSet = new ArrayList<querydidtab>();
+			sqlSet = personService.add(testdbmodel);
+			//System.out.println(sqlSet.size());
+			if(sqlSet.size()==0)
+			{
+				System.out.println("Datasource already exists");
+				
+			}else
+			{
+				for(querydidtab subsql : sqlSet)
+				{
+					System.out.println(subsql.getSqlCommand() +" "+ subsql.getDid() + " " + subsql.getTabName());
+				}
+			}
+			//DatasourceModel datasourceInserted = convertDbToVM(datasourceDB);
+			
+			return Response.status(200).entity(testdbmodel).build();
 		} catch (Exception e) {
 			return Response.status(500).build();
 		}
 		
 	}
-	*/
+	
 	
 	
 	private DatasourceDBModel convertVMToDB(final DatasourceModel dbsource) {
@@ -158,31 +182,7 @@ public class PersonRestService {
 		return result;
 	}
 	
-	/*
-	private DatasourceDBModel convertDBToVM(final DatasourceModel dbsource) {
-		DatasourceIdsDBModel dbDBmodel = new DatasourceIdsDBModel(dbsource.getDatasource().getId(),dbsource.getDatasource().getDbName(),dbsource.getDatasource().getTitle());
-		List<TableDBModel> tabDBmodel = tabVMToDB(dbsource.getTables());
-		return new DatasourceDBModel(dbDBmodel, tabDBmodel);
-	}
 
-	private List<TableDBModel> tabVMToDB(final List<TableViewModel> tabs) {
-		List<TableDBModel> result = new ArrayList<TableDBModel>();
-		for(TableViewModel tab : tabs) {
-			result.add(new TableDBModel(tab.getTableName(), colVMToDB(tab.getColumns())));
-		}
-		
-		return result;
-	}
-	
-	private List<ColumnDBModel> colVMToDB(final List<ColumnViewModel> cols) {
-		List<ColumnDBModel> result = new ArrayList<ColumnDBModel>();
-		for(ColumnViewModel col : cols) {
-			result.add(new ColumnDBModel(col.getColumnName()));
-		}
-		
-		return result;
-	}
-	*/
 	
 	
 	private Index convertDbToVM(final PersonDBModel personDB) {
