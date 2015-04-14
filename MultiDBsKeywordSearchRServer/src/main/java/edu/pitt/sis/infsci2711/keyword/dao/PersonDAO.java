@@ -107,6 +107,24 @@ public class PersonDAO {
 		
 	}
 	
+	public static void buildIndex(final int did, final String table, final String column, final List<String[]> rows)throws SQLException, Exception {
+		try (Connection connection = JdbcUtil.getConnection()) {
+			try (Statement statement = connection.createStatement()){
+				int size=rows.size();
+				for(int i=0;i<size;i++){
+					String[] value=rows.get(i);
+					
+				String sql = "INSERT INTO `Index` (dbTerm, databaseName, tableName, columnName) VALUES ('"+ value[0] +"', '"+did+"', '"+ table +"','"+column+"')";
+				
+				statement.executeUpdate(sql);
+				}
+			}
+						
+
+			}
+		
+	}
+	
 	public static boolean save(final DatasourceDBModel dbsource) throws SQLException, Exception {
 		
 		try (Connection connection = JdbcUtil.getConnection()) {

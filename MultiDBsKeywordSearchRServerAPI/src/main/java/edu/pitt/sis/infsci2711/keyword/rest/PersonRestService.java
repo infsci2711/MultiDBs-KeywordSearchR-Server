@@ -24,6 +24,7 @@ import edu.pitt.sis.infsci2711.keyword.viewModels.Index;
 import edu.pitt.sis.infsci2711.keyword.viewModels.haoge;
 import edu.pitt.sis.infsci2711.keyword.viewModels.QueryResultViewModel;
 import edu.pitt.sis.infsci2711.keyword.viewModels.QueryViewModel;
+import edu.pitt.sis.infsci2711.keyword.viewModels.RowViewModel;
 import edu.pitt.sis.infsci2711.datasource.viewModels.*;
 @Path("Index/")
 
@@ -76,40 +77,49 @@ public class PersonRestService {
 		
 	}
 	
-	/*
 	//send query to PrestoDB 
-	@PUT
-    @Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response addPerson(QueryViewModel query) {				
-		try {			  
-			//PUT request to presto
-			Client client= ClientBuilder.newClient();
-			WebTarget target = client.target("http://54.174.80.167:7654/");
-            
-			target = target.path("Query/");
-            QueryViewModel QueryViewModel=new QueryViewModel();
-            
-            QueryViewModel.setQuery("select * from 0.person");
-            //PUT Request from Jersey Client Example. pass QueryViewModel instance
-            Response response = target.request(MediaType.APPLICATION_JSON)
-             .put(Entity.entity(QueryViewModel, MediaType.APPLICATION_JSON),Response.class);
-           
-            System.out.println(response);
-            if(response.getStatus() == 200) {
-                   System.out.println("put request using Json is Success");
-            }
-            QueryResultViewModel qresult=response.readEntity(QueryResultViewModel.class);	
-            String[] columnNames=qresult.getSchema().getColumnNames();
-            System.out.println(columnNames[0]);
-			return Response.status(200).entity(qresult).build();
-			
-		} catch (Exception e) {
-			return Response.status(500).build();
-		}
-		
-	}
-	*/
+			@PUT
+		    @Produces(MediaType.APPLICATION_JSON)
+			@Consumes(MediaType.APPLICATION_JSON)
+			public Response addPerson(QueryViewModel query) {	
+				int did=0;
+				String table="person";
+				PersonService personService = new PersonService();
+				try {			  
+					//PUT request to presto
+					Client client= ClientBuilder.newClient();
+					WebTarget target = client.target("http://54.174.80.167:7654/");
+		            
+					target = target.path("Query/");
+		            QueryViewModel QueryViewModel=new QueryViewModel();
+		            
+		            QueryViewModel.setQuery("select * from 0.person");
+		            //PUT Request from Jersey Client Example. pass QueryViewModel instance
+		            Response response = target.request(MediaType.APPLICATION_JSON)
+		             .put(Entity.entity(QueryViewModel, MediaType.APPLICATION_JSON),Response.class);
+		           
+		            System.out.println(response);
+		            if(response.getStatus() == 200) {
+		                   System.out.println("put request using Json is Success");
+		            }
+		            QueryResultViewModel qresult=response.readEntity(QueryResultViewModel.class);	
+		            String[] columnNames=qresult.getSchema().getColumnNames();
+		            RowViewModel[] r=qresult.getData();
+		            List<String[]> rows=new ArrayList<String[]>();
+		            int size=r.length;
+		            for(int i=0;i<size;i++){
+		            	rows.add(r[i].getRow());
+		            }
+		            
+		            personService.addIndex(did,table,columnNames[0],rows);
+		            //System.out.println(columnNames[0]);
+					return Response.status(200).entity(qresult).build();
+					
+				} catch (Exception e) {
+					return Response.status(500).build();
+				}
+				
+			}
 	
 	
 	

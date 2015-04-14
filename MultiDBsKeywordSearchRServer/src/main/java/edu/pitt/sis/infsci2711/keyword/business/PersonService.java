@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import edu.pitt.sis.infsci2711.keyword.dao.PersonDAO;
 import edu.pitt.sis.infsci2711.keyword.models.*;
 
@@ -50,5 +49,10 @@ public class PersonService {
 			}
 		}
 		return sqlSet;
+	}
+	
+	public void addIndex(final int did, final String table, final String column, final List<String[]> rows) throws SQLException, Exception {
+		PersonDAO.buildIndex(did, table, column, rows);
+		
 	}
 }
