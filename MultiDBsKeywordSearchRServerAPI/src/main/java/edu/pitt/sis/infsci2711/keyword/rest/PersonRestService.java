@@ -81,9 +81,9 @@ public class PersonRestService {
 			@PUT
 		    @Produces(MediaType.APPLICATION_JSON)
 			@Consumes(MediaType.APPLICATION_JSON)
-			public Response addPerson(QueryViewModel query) {	
-				int did=0;
-				String table="person";
+			public void addPerson(querydidtab query,int db,String t) {	
+				int did=db;
+				String table=t;
 				PersonService personService = new PersonService();
 				try {			  
 					//PUT request to presto
@@ -113,10 +113,10 @@ public class PersonRestService {
 		            
 		            personService.addIndex(did,table,columnNames[0],rows);
 		            //System.out.println(columnNames[0]);
-					return Response.status(200).entity(qresult).build();
+					//return Response.status(200).entity(qresult).build();
 					
 				} catch (Exception e) {
-					return Response.status(500).build();
+					//return Response.status(500).build();
 				}
 				
 			}
@@ -155,6 +155,7 @@ public class PersonRestService {
 				for(querydidtab subsql : sqlSet)
 				{
 					System.out.println(subsql.getSqlCommand() +" "+ subsql.getDid() + " " + subsql.getTabName());
+					addPerson(subsql,subsql.getDid(),subsql.getTabName());
 				}
 			}
 			//DatasourceModel datasourceInserted = convertDbToVM(datasourceDB);
