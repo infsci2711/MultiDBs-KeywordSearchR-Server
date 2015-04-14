@@ -135,7 +135,7 @@ public class PersonDAO {
 				//System.out.println(did);
 				ResultSet isInsertset = statementj.executeQuery(sqlj);
 				ResultSetMetaData rsmd = isInsertset.getMetaData();
-				int columnsNumber = rsmd.getColumnCount();
+				//int columnsNumber = rsmd.getColumnCount();
 				//System.out.println(isInsertset.getFetchSize());
 				if(isInsertset.next())
 				{

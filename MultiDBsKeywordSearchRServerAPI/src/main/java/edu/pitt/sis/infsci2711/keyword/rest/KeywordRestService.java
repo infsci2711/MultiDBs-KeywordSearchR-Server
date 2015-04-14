@@ -94,19 +94,19 @@ public class KeywordRestService {
 				try {			  
 					//PUT request to presto
 										
-					//Client client= ClientBuilder.newClient();
-					//WebTarget target = client.target("http://54.174.80.167:7654/");
+					Client client= ClientBuilder.newClient();
+					WebTarget target = client.target("http://54.174.80.167:7654/");
 		            
-					//target = target.path("Query/");
+					target = target.path("Query/");
 		            QueryViewModel QueryViewModel=new QueryViewModel();
 		            
 		            QueryViewModel.setQuery(q);
 		            //PUT Request from Jersey Client Example. pass QueryViewModel instance
-		            Response response = JerseyClientUtil.doPut(PropertiesManager.getInstance().getStringProperty("http://54.174.80.167:7654"), PropertiesManager.getInstance().getStringProperty("/Query/"), QueryViewModel);
+		            //Response response = JerseyClientUtil.doPut(PropertiesManager.getInstance().getStringProperty("prestostore.rest.base"), PropertiesManager.getInstance().getStringProperty("prestostore.rest.getAllData"), QueryViewModel);
 		            
 
-		            //Response response = target.request(MediaType.APPLICATION_JSON)
-		            // .put(Entity.entity(QueryViewModel, MediaType.APPLICATION_JSON),Response.class);
+		            Response response = target.request(MediaType.APPLICATION_JSON)
+		             .put(Entity.entity(QueryViewModel, MediaType.APPLICATION_JSON),Response.class);
 		            
 		            System.out.println(response);
 		            if(response.getStatus() == 200) {
