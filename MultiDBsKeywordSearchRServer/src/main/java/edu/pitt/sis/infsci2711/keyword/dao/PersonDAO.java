@@ -70,7 +70,7 @@ public class PersonDAO {
 				List<PersonDBModel> result = new ArrayList<PersonDBModel>();
 				
 				while (resultSet.next()) {
-					result.add(new PersonDBModel(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5)));					 
+					result.add(new PersonDBModel(resultSet.getInt("termId"), resultSet.getString("dbTerm"), resultSet.getString("databaseName"), resultSet.getString("tableName"), resultSet.getString("columnName")));					 
 				}
 				
 				return result;
@@ -98,7 +98,7 @@ public class PersonDAO {
 				List<PersonDBModel> result = new ArrayList<PersonDBModel>();
 				
 				while (resultSet.next()) {
-					result.add(new PersonDBModel(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5)));					 
+					result.add(new PersonDBModel(resultSet.getInt("termId"), resultSet.getString("dbTerm"), resultSet.getString("databaseName"), resultSet.getString("tableName"), resultSet.getString("columnName")));					 
 				}
 				
 				return result;
