@@ -13,7 +13,7 @@ public static final String DEFAULT_HOST = "localhost";
 	
 	public static final String DEFAULT_PASSWOD = "root"; // CHANGE TO YOUR MYSQL PASSWORD
 	
-	public static final String DEFAULT_DATABASE = "infsci2711_tutorial";
+	public static final String DEFAULT_DATABASE = "mysql";
 	
 	public static Connection getConnection() throws Exception {
 		Class.forName("com.mysql.jdbc.Driver");
