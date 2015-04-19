@@ -1,7 +1,7 @@
 # MultiDBs-KeywordSearchR-Server
 Keyword Search using relational dbs
 
-# Before running the project, we need to open mysql port 3306 to the public
+Before running the project, we need to open mysql port 3306 to the public
 1. Open mysql port 3306 to public (enabling remote access)
 
 To check if your mysql port 3306 is open to public, follow these two steps:
