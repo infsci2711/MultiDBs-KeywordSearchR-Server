@@ -1,17 +1,29 @@
 # MultiDBs-KeywordSearchR-Server
 Keyword Search using relational dbs
 
-1. Please download the setup.sh first on your local machine.
+1. Open mysql port 3306 to public (enabling remote access)
+To check if your mysql port 3306 is open to public, follow these two steps:
+(1) Login to the server.
+(2) run this command:
+
+
+
+
+
+
+2. Steps to set up the project
+
+(1) Please download the setup.sh first on your local machine.
 (Click the download button in the right corner)
 
-2. In the terminal, input "sudo chmod +x setup.sh"(without double quotation mark) to modify the permission.
+(2) In the terminal, input "sudo chmod +x setup.sh"(without double quotation mark) to modify the permission.
 
-3. run "./setup.sh"(without double quotation mark).
+(3) run "./setup.sh"(without double quotation mark).
 
-4. When the MySQL is installing, the username you set should be root, and the password should be root too.
+(4) When the MySQL is installing, the username you set should be root, and the password should be root too.
 
-5. If you run successfully, you can run "lsof -i:7654", then you can see information of the process.
+(5) If you run successfully, you can run "lsof -i:7654", then you can see information of the process.
 
-6. Now you can see our main webpage on your local machine.
+(6) Now you can see our main webpage on your local machine.
 
-7. If you update, run "ssh stop-server.sh" to stop the server and rebuild the javacode first, then run "ssh start-servers.sh" to restart the server.
+(7) If you update, run "ssh stop-server.sh" to stop the server and rebuild the javacode first, then run "ssh start-servers.sh" to restart the server.
