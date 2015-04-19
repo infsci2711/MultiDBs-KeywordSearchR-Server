@@ -8,8 +8,10 @@ Keyword Search using relational dbs
 
 3. run "./setup.sh"(without double quotation mark).
 
-4. If you run successfully, you can run "lsof -i:7654", then you can see information of the process.
+4. When the MySQL is installing, the username you set should be root, and the password should be root too.
 
-5. Now you can see our main webpage on your local machine.
+5. If you run successfully, you can run "lsof -i:7654", then you can see information of the process.
 
-6. If you update, run "ssh stop-server.sh" to stop the server and rebuild the javacode first, then run "ssh start-servers.sh" to restart the server.
+6. Now you can see our main webpage on your local machine.
+
+7. If you update, run "ssh stop-server.sh" to stop the server and rebuild the javacode first, then run "ssh start-servers.sh" to restart the server.
