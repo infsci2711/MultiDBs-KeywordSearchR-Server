@@ -17,7 +17,7 @@ You will probably see this at the end of the line:
 This means that your mysql is only available to localhost (the server machine), not open to public.
 Otherwise, it should be "0t0  TCP *:3306 (LISTEN)".
 
-To make the mysql 3306 port public accessible, follow these commands:
+To make the mysql 3306 port public accessible, follow these commands in the terminal:
  
 (1)
 sudo nano /etc/mysql/my.cnf
