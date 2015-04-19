@@ -22,10 +22,15 @@ To make the mysql 3306 port public accessible, follow these commands:
 sudo nano /etc/mysql/my.cnf
  
 We need to edit the mysql config file using nano. Use down arrow to scroll down and find "[mysqld]"
+
 Then try to find a line "bind-address           =127.0.0.1"
+
 Add a '#' in front of that line to disable it
+
 start a new line, with content "bind-address             =0.0.0.0"
+
 Save the file by using ctrl + O.
+
 Exit by ctrl + X. 
 
 
