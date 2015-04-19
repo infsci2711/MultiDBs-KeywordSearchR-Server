@@ -143,16 +143,16 @@ public class KeywordRestService {
 		try {
 			
 			//TEST
-			List<ColumnViewModel> cvmlist = new ArrayList<ColumnViewModel>();
+			/*List<ColumnViewModel> cvmlist = new ArrayList<ColumnViewModel>();
 			cvmlist.add(new ColumnViewModel("id"));
 			cvmlist.add(new ColumnViewModel("firstname"));
 			cvmlist.add(new ColumnViewModel("lastname"));
 			List<TableViewModel> tvmlist = new ArrayList<TableViewModel>();
 			tvmlist.add(new TableViewModel("person", cvmlist));
-			DatasourceModel testdb = new DatasourceModel(0, "A", "A", 1, "A", "A", "A","A","A", tvmlist);
+			DatasourceModel testdb = new DatasourceModel(0, "A", "A", 1, "A", "A", "A","A","A", tvmlist);*/
 			//TEST
 			
-			DatasourceDBModel testdbmodel = convertVMToDB(testdb);
+			DatasourceDBModel testdbmodel = convertVMToDB(datasource);
 			List<querydidtab> sqlSet = new ArrayList<querydidtab>();
 			sqlSet = personService.add(testdbmodel);
 			
