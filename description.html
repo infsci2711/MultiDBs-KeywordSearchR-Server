@@ -60,13 +60,6 @@
 					<p>This is page includes very (really super very) detailed documentation of our project (not including REST API):</p>
 					<p>The page has the following aspects of project:What are the main parts of our project, algorithms, not easy
 concepts, and anything important for people outside of INFSCI 2711 class.Work with other MultiDBs projects
-The Keyword Search Relational project directly collaborates with MetaStore and PrestoDB Query projects. Once a user enters connection information to a new database in MetaStore, a REST request is sent to us with database information as parameter. Then our programs take actions to generate corresponding SQL queries and send them to PrestoDB team by requesting their REST service. After getting the query results from PresoDB, indexes are built for each entry in the databases for more efficient keyword search.
-Use cases:
-Use case 1: MetaStore is able to send REST request to our project once a user enters database information, telling us that a new datasource was added. After receiving request from MetaStore, SQL queries are generated according to the datasource information.
-Use case 2: Our project is able to send REST request to PrestoDB team passing SQL queries and get search results.
-Use case 3: Our project is able to build and update indexes of database records based on the results returned by PrestoDB project.
-Use case 4: Users are able to search for information in all databases by entering one or more keywords. A list of search results are shown on the page containing those keywords, datasource names (id), table names, and column names where the keywords are found.
-
 </p>
 
 			</div>
