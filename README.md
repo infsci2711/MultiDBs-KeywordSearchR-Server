@@ -6,10 +6,14 @@ To check if your mysql port 3306 is open to public, follow these two steps:
 (1) Login to the server.
 (2) run this command:
 
-
-
-
-
+sudo lsof -i -P | grep :3306
+ 
+You will probably see this at the end of the line:
+ 
+0t0  TCP localhost:3306 (LISTEN)
+ 
+This means that your mysql is only available to localhost (the server machine), not open to public.
+Otherwise, it should be "0t0  TCP *:3306 (LISTEN)".
 
 2. Steps to set up the project
 
