@@ -18,6 +18,7 @@ sudo git clone https://github.com/infsci2711/MultiDBs-KeywordSearchR-WebClient.g
 sudo git clone https://github.com/infsci2711/MultiDBs-Utils.git
 
 #install the table
+cd /opt/project/MultiDBs-KeywordSearchR-Server
 mysql -u root -proot < db.sql
 cd /usr/share/nginx
 sudo rm -R html
