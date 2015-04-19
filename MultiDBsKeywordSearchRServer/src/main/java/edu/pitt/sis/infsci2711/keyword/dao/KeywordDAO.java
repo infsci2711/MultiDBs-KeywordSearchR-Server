@@ -11,9 +11,9 @@ import java.util.List;
 import edu.pitt.sis.infsci2711.keyword.models.*;
 import edu.pitt.sis.infsci2711.keyword.utils.JdbcUtil;
 
-public class PersonDAO {
+public class KeywordDAO {
 
-	public static List<PersonDBModel> findAll() throws SQLException, Exception {
+	public static List<KeywordDBModel> findAll() throws SQLException, Exception {
 		
 		
 		try (Connection connection = JdbcUtil.getConnection()) {
@@ -67,10 +67,10 @@ public class PersonDAO {
 				
 				ResultSet resultSet = statement4.executeQuery(sql);
 				
-				List<PersonDBModel> result = new ArrayList<PersonDBModel>();
+				List<KeywordDBModel> result = new ArrayList<KeywordDBModel>();
 				
 				while (resultSet.next()) {
-					result.add(new PersonDBModel(resultSet.getInt("termId"), resultSet.getString("dbTerm"), resultSet.getString("databaseName"), resultSet.getString("tableName"), resultSet.getString("columnName")));					 
+					result.add(new KeywordDBModel(resultSet.getInt("termId"), resultSet.getString("dbTerm"), resultSet.getString("databaseName"), resultSet.getString("tableName"), resultSet.getString("columnName")));					 
 				}
 				
 				return result;
@@ -81,7 +81,7 @@ public class PersonDAO {
 	
 
 	
-	public static List<PersonDBModel> findById(final String dbTerm) throws SQLException, Exception {
+	public static List<KeywordDBModel> findById(final String dbTerm) throws SQLException, Exception {
 		
 		try (Connection connection = JdbcUtil.getConnection()) {
 			String[] splited = dbTerm.split("\\s+");
@@ -95,10 +95,10 @@ public class PersonDAO {
 			try (Statement statement = connection.createStatement()){
 				
 				ResultSet resultSet = statement.executeQuery(sql);
-				List<PersonDBModel> result = new ArrayList<PersonDBModel>();
+				List<KeywordDBModel> result = new ArrayList<KeywordDBModel>();
 				
 				while (resultSet.next()) {
-					result.add(new PersonDBModel(resultSet.getInt("termId"), resultSet.getString("dbTerm"), resultSet.getString("databaseName"), resultSet.getString("tableName"), resultSet.getString("columnName")));					 
+					result.add(new KeywordDBModel(resultSet.getInt("termId"), resultSet.getString("dbTerm"), resultSet.getString("databaseName"), resultSet.getString("tableName"), resultSet.getString("columnName")));					 
 				}
 				
 				return result;

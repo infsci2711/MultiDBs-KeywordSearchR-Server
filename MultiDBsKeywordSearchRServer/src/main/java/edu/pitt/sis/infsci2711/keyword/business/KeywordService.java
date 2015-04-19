@@ -7,20 +7,20 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import edu.pitt.sis.infsci2711.keyword.dao.PersonDAO;
+import edu.pitt.sis.infsci2711.keyword.dao.KeywordDAO;
 import edu.pitt.sis.infsci2711.keyword.models.*;
 
-public class PersonService {
-	final Logger logger = LogManager.getLogger(PersonService.class.getName());
+public class KeywordService {
+	final Logger logger = LogManager.getLogger(KeywordService.class.getName());
 	
-	public List<PersonDBModel> getAll() throws SQLException, Exception {
-		List<PersonDBModel> result = PersonDAO.findAll();
+	public List<KeywordDBModel> getAll() throws SQLException, Exception {
+		List<KeywordDBModel> result = KeywordDAO.findAll();
 		
 		return result;
 	}
 	
-	public List<PersonDBModel> findById(final String dbTerm) throws SQLException, Exception {
-		List<PersonDBModel> result = PersonDAO.findById(dbTerm);
+	public List<KeywordDBModel> findById(final String dbTerm) throws SQLException, Exception {
+		List<KeywordDBModel> result = KeywordDAO.findById(dbTerm);
 		
 		return result;
 	}
@@ -28,7 +28,7 @@ public class PersonService {
 	public List<querydidtab> add(final DatasourceDBModel datasource) throws SQLException, Exception {
 		
 		List<querydidtab> sqlSet = new ArrayList<querydidtab>();
-		boolean isInsert = PersonDAO.save(datasource);
+		boolean isInsert = KeywordDAO.save(datasource);
 		String tempsql;
 		if(!isInsert) //save did
 		{
@@ -56,7 +56,7 @@ public class PersonService {
 	}
 	
 	public void addIndex(final int did, final String table, final String column, final List<String[]> rows) throws SQLException, Exception {
-		PersonDAO.buildIndex(did, table, column, rows);
+		KeywordDAO.buildIndex(did, table, column, rows);
 		
 	}
 }
