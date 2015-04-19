@@ -30,6 +30,9 @@ Exit by ctrl + X.
 
 
 
+
+
+
 2. Steps to set up the project
 
 (1) Please download the setup.sh first on your local machine.
