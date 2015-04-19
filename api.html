@@ -58,24 +58,38 @@
 			<div class="about-left">
 					<h3>REST API documentation Page</h3>
 
-					<p>MultiDBs-KeywordSearchRelational
-					IP Address: http://52.1.107.126/
+					<p>
+					IP Address: http://52.1.107.126/</br>
 					restBaseUrl: http://52.1.107.126:7654/</p>
-					<p>You can find both the art and science of creating REST Web services in the following webpage.
-http://www.restapitutorial.com/
-</p>
-					<p>Build Index
-Receive: new datasource request and corresponding database schema.
-Function: automatically build index, and store index in local database for other users’ retrieval
-
-url: restBaseUrl + "/Index"
-type: 'PUT'
-data: {  id, dbType,  ipAddress, port, username, password, dbName, title, description, tables: [ { tableName, columns: [ { columnName } ] } ] }
-dataType: 'json'
-contentType: "application/json"
-Input instance:
-{"id": 1, "IPAddress": "ip1", "port": 123, "DBname": "dbName1", "username": "username1", "password": "password1", "DBtype": "MySQL", "tables": [ { "tableName" : "test", "columns": [ { "columnName": "field" } ] } ] }
-</p>
+					<p>You can find both the art and science of creating REST Web services in the following webpage.</br>
+http://www.restapitutorial.com/</p>
+					<h5>Build Index</h5>
+					<p>Receive: new datasource request and corresponding database schema.</br>
+					Function: automatically build index, and store index in local database for other users’ retrieval</br>
+					</br>
+					url: restBaseUrl + "/Index"</br>
+					type: 'PUT'</br>
+					data: {  id, dbType,  ipAddress, port, username, password, dbName, title, description, tables: [ { tableName, columns: [ { columnName } ] } ] }</br>
+					dataType: 'json'</br>
+					contentType: "application/json"</br>
+					Input instance:</br>
+					{"id": 1, "IPAddress": "ip1", "port": 123, "DBname": "dbName1", "username": "username1", "password": "password1", "DBtype": "MySQL", "tables": [ { "tableName" : "test", "columns": [ { "columnName": "field" } ] } ] }
+					</p>
+					
+					<h5>Search Keywords</h5>
+					<p>
+					Input: key words (combining with whitespace)</br>
+					Output: key words’ information (database name, table name, column name)</br>
+					</br>
+					url: restBaseUrl + "Index/"+ yourkeywords,</br>
+					type: 'GET',</br>
+					dataType: 'json',</br>
+					contentType: "application/json",</br>
+					Url instance: http://52.1.107.126:7654/Index/chi%20hao </br>
+					Ouput instance:</br>
+					{"columnName":"firstname","databaseName":"0","id":957,"tableName":"person","term":"Ming"},</br>
+					{"columnName":"firstname","databaseName":"0","id":958,"tableName":"person","term":"Hao"}</br>
+					</p>
 					
 			</div>
 			<div class="about-right">
