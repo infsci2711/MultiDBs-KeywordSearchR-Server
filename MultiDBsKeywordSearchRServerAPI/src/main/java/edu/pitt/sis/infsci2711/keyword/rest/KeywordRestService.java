@@ -22,7 +22,7 @@ import org.apache.logging.log4j.Logger;
 
 import edu.pitt.sis.infsci2711.multidbs.utils.JerseyClientUtil;
 import edu.pitt.sis.infsci2711.multidbs.utils.PropertiesManager;
-import edu.pitt.sis.infsci2711.keyword.business.PersonService;
+import edu.pitt.sis.infsci2711.keyword.business.KeywordService;
 import edu.pitt.sis.infsci2711.keyword.models.*;
 import edu.pitt.sis.infsci2711.keyword.viewModels.DatasourceModel;
 import edu.pitt.sis.infsci2711.keyword.viewModels.Index;
@@ -40,9 +40,9 @@ public class KeywordRestService {
     @Produces(MediaType.APPLICATION_JSON)
 	public Response allPersons() {
 		
-		PersonService personService = new PersonService();
+		KeywordService personService = new KeywordService();
 		
-		List<PersonDBModel> personsDB;
+		List<KeywordDBModel> personsDB;
 		try {
 			personsDB = personService.getAll();
 		
@@ -64,8 +64,8 @@ public class KeywordRestService {
     @Produces(MediaType.APPLICATION_JSON)
 	public Response personById(@PathParam("dbTerm") final String dbTerm) {
 		
-		PersonService personService = new PersonService();
-		List<PersonDBModel> personsDB;
+		KeywordService personService = new KeywordService();
+		List<KeywordDBModel> personsDB;
 		
 		try {
 			personsDB = personService.findById(dbTerm);
@@ -90,23 +90,23 @@ public class KeywordRestService {
 				String q=query;
 				int did=db;
 				String table=t;
-				PersonService personService = new PersonService();
+				KeywordService personService = new KeywordService();
 				try {			  
 					//PUT request to presto
 										
-					Client client= ClientBuilder.newClient();
-					WebTarget target = client.target("http://54.174.80.167:7654/");
+					//Client client= ClientBuilder.newClient();
+					//WebTarget target = client.target("http://54.174.80.167:7654/");
 		            
-					target = target.path("Query/");
+					//target = target.path("Query/");
 		            QueryViewModel QueryViewModel=new QueryViewModel();
 		            
 		            QueryViewModel.setQuery(q);
 		            //PUT Request from Jersey Client Example. pass QueryViewModel instance
-		            //Response response = JerseyClientUtil.doPut(PropertiesManager.getInstance().getStringProperty("prestostore.rest.base"), PropertiesManager.getInstance().getStringProperty("prestostore.rest.getAllData"), QueryViewModel);
+		            Response response = JerseyClientUtil.doPut(PropertiesManager.getInstance().getStringProperty("prestostore.rest.base"), PropertiesManager.getInstance().getStringProperty("prestostore.rest.getAllData"), QueryViewModel);
 		            
 
-		            Response response = target.request(MediaType.APPLICATION_JSON)
-		             .put(Entity.entity(QueryViewModel, MediaType.APPLICATION_JSON),Response.class);
+		            //Response response = target.request(MediaType.APPLICATION_JSON)
+		            // .put(Entity.entity(QueryViewModel, MediaType.APPLICATION_JSON),Response.class);
 		            
 		            System.out.println(response);
 		            if(response.getStatus() == 200) {
@@ -138,21 +138,21 @@ public class KeywordRestService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response addDatasource(final DatasourceModel datasource) {
 		
-		PersonService personService = new PersonService();
+		KeywordService personService = new KeywordService();
 		
 		try {
 			
 			//TEST
-			/*List<ColumnViewModel> cvmlist = new ArrayList<ColumnViewModel>();
+			List<ColumnViewModel> cvmlist = new ArrayList<ColumnViewModel>();
 			cvmlist.add(new ColumnViewModel("id"));
 			cvmlist.add(new ColumnViewModel("firstname"));
 			cvmlist.add(new ColumnViewModel("lastname"));
 			List<TableViewModel> tvmlist = new ArrayList<TableViewModel>();
 			tvmlist.add(new TableViewModel("person", cvmlist));
-			DatasourceModel testdb = new DatasourceModel(0, "A", "A", 1, "A", "A", "A","A","A", tvmlist);*/
+			DatasourceModel testdb = new DatasourceModel(0, "A", "A", 1, "A", "A", "A","A","A", tvmlist);
 			//TEST
 			
-			DatasourceDBModel testdbmodel = convertVMToDB(datasource);
+			DatasourceDBModel testdbmodel = convertVMToDB(testdb);
 			List<querydidtab> sqlSet = new ArrayList<querydidtab>();
 			sqlSet = personService.add(testdbmodel);
 			
@@ -206,26 +206,26 @@ public class KeywordRestService {
 
 	
 	
-	private Index convertDbToVM(final PersonDBModel personDB) {
+	private Index convertDbToVM(final KeywordDBModel personDB) {
 		return new Index(personDB.getId(), personDB.getTerm(), personDB.getDatabaseName(), personDB.getTableName(), personDB.getColumnName());
 	}
 	
 	
 
-	private PersonDBModel convertViewModelToDB(final Index index) {
-		return new PersonDBModel(index.getTerm(), index.getDatabaseName(), index.getTableName(), index.getColumnName());
+	private KeywordDBModel convertViewModelToDB(final Index index) {
+		return new KeywordDBModel(index.getTerm(), index.getDatabaseName(), index.getTableName(), index.getColumnName());
 	}
 
-	private List<Index> convertDbToViewModel(final List<PersonDBModel> personsDB) {
+	private List<Index> convertDbToViewModel(final List<KeywordDBModel> personsDB) {
 		List<Index> result = new ArrayList<Index>();
-		for(PersonDBModel personDB : personsDB) {
+		for(KeywordDBModel personDB : personsDB) {
 			result.add(convertDbToViewModel(personDB));
 		}
 		
 		return result;
 	}
 	
-	private Index convertDbToViewModel(final PersonDBModel personDB) {
+	private Index convertDbToViewModel(final KeywordDBModel personDB) {
 		return new Index(personDB.getId(), personDB.getTerm(), personDB.getDatabaseName(), personDB.getTableName(), personDB.getColumnName());
 	}
 }
