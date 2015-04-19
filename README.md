@@ -1,6 +1,7 @@
 # MultiDBs-KeywordSearchR-Server
 Keyword Search using relational dbs
 
+# Before running the project, we need to open mysql port 3306 to the public
 1. Open mysql port 3306 to public (enabling remote access)
 
 To check if your mysql port 3306 is open to public, follow these two steps:
@@ -18,7 +19,7 @@ Otherwise, it should be "0t0  TCP *:3306 (LISTEN)".
 
 To make the mysql 3306 port public accessible, follow these commands:
  
-(1)a.
+(1)
 sudo nano /etc/mysql/my.cnf
  
 We need to edit the mysql config file using nano. Use down arrow to scroll down and find "[mysqld]"
@@ -33,8 +34,21 @@ Save the file by using ctrl + O.
 
 Exit by ctrl + X. 
 
+(2)
+sudo /etc/init.d/mysql restart
 
+If fails, check if the content of my.cnf file has been edited. And simply run the command again.
 
+If succeeds, run the following to check port:
+ 
+(3) 
+sudo lsof -i -P | grep :3306
+ 
+And now you should be able to see something very similar to the following if everything is correct:
+ 
+mysqld     5970    mysql   10u  IPv4 3452154      0t0  TCP *:3306 (LISTEN)
+
+Now you can do the following to set up the project.
 
 
 
