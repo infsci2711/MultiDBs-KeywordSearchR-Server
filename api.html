@@ -57,12 +57,26 @@
 		<div class="about" id="about">
 			<div class="about-left">
 					<h3>REST API documentation Page</h3>
-					<p>This is page includes Very (really super very) detailed documentation of your REST API:</p>
-					<p>It describe each API service with the following aspects: what it does , path ,method,input params,output params</p>
-					<p>REST API</p>
 
-					<p>MultiDBs-KeywordSearchRelational</p>
-					<p>IP Address: http://52.1.107.126/</p>
+					<p>MultiDBs-KeywordSearchRelational
+					IP Address: http://52.1.107.126/
+					restBaseUrl: http://52.1.107.126:7654/</p>
+					<p>You can find both the art and science of creating REST Web services in the following webpage.
+http://www.restapitutorial.com/
+</p>
+					<p>Build Index
+Receive: new datasource request and corresponding database schema.
+Function: automatically build index, and store index in local database for other users’ retrieval
+
+url: restBaseUrl + "/Index"
+type: 'PUT'
+data: {  id, dbType,  ipAddress, port, username, password, dbName, title, description, tables: [ { tableName, columns: [ { columnName } ] } ] }
+dataType: 'json'
+contentType: "application/json"
+Input instance:
+{"id": 1, "IPAddress": "ip1", "port": 123, "DBname": "dbName1", "username": "username1", "password": "password1", "DBtype": "MySQL", "tables": [ { "tableName" : "test", "columns": [ { "columnName": "field" } ] } ] }
+</p>
+					
 			</div>
 			<div class="about-right">
 				<img class="img-responsive" src="images/pi.jpg" alt="" />
