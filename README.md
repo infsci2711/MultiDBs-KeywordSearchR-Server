@@ -2,6 +2,7 @@
 Keyword Search using relational dbs
 
 1. Open mysql port 3306 to public (enabling remote access)
+
 To check if your mysql port 3306 is open to public, follow these two steps:
 (1) Login to the server.
 (2) run this command:
@@ -14,6 +15,20 @@ You will probably see this at the end of the line:
  
 This means that your mysql is only available to localhost (the server machine), not open to public.
 Otherwise, it should be "0t0  TCP *:3306 (LISTEN)".
+
+To make the mysql 3306 port public accessible, follow these commands:
+ 
+#1.
+sudo nano /etc/mysql/my.cnf
+ 
+# We need to edit the mysql config file using nano. Use down arrow to scroll down and find "[mysqld]"
+# Then try to find a line "bind-address           =127.0.0.1"
+# Add a '#' in front of that line to disable it
+#start a new line, with content "bind-address             =0.0.0.0"
+# Save the file by using ctrl + O.
+# Exit by ctrl + X. 
+
+
 
 2. Steps to set up the project
 
