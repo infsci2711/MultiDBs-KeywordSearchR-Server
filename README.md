@@ -2,8 +2,8 @@
 
 1.Steps to set up the project
 
-(1) Please download the setup.sh first on your local machine.
-(Click the download button in the right corner)
+(1) Please download the setup.sh first on your local machine. (Click the download button in the right corner)
+Suppose you download the setup.sh on /opt. Then run "cd /opt"
 
 (2) In the terminal, input "sudo chmod +x setup.sh"(without double quotation mark) to modify the permission.
 
