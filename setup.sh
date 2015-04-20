@@ -24,14 +24,15 @@ cd /usr/share/nginx
 sudo rm -R html
 sudo ln -sv /opt/project/MultiDBs-KeywordSearchR-WebClient html
 
+#mvn install
 cd /opt/project/MultiDBs-Utils
 mvn install
-
 cd /opt/project/MultiDBs-KeywordSearchR-Server/MultiDBsKeywordSearchRServer
 mvn install
 cd /opt/project/MultiDBs-KeywordSearchR-Server/MultiDBsKeywordSearchRServerAPI
 mvn install 
 
+#start server
 cd /opt
 sudo chown -R student:student project
 kill -9 $(ps aux | grep java | grep multidbskeywordsearchrserverapi-0.1-SNAPSHOT.jar | awk '{print $2}')
