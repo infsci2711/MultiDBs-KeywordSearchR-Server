@@ -41,4 +41,4 @@ cd /opt/project/MultiDBs-KeywordSearchR-Server/MultiDBsKeywordSearchRServerAPI/t
 nohup java -jar multidbskeywordsearchrserverapi-0.1-SNAPSHOT.jar /opt/project/MultiDBs-KeywordSearchR-Server/MultiDBsKeywordSearchRServerAPI/src/main/resources/config.properties > log.out 2> error.log < /dev/null &
 
 #restart mysql
-sudo service mysql restart
+#sudo service mysql restart
