@@ -11,11 +11,7 @@ Suppose you download the setup.sh on /opt. Then run "cd /opt"
 
 (4) When the MySQL is installing, the username you set should be root, and the password should be root too.
 
-(5) If you run successfully, you can run "lsof -i:7654", then you can see information of the process.
 
-(6) Now you can see our main webpage on your local machine.
-
-(7) If you update, run "ssh stop-server.sh" to stop the server and rebuild the javacode first, then run "ssh start-servers.sh" to restart the server.
 
 2. Before running the project, we need to open mysql port 3306 to the public
 1.Open mysql port 3306 to public (enabling remote access)
@@ -64,4 +60,8 @@ And now you should be able to see something very similar to the following if eve
  
 mysqld     5970    mysql   10u  IPv4 3452154      0t0  TCP *:3306 (LISTEN)
 
-Now you can do the following to set up the project.
+3. If you run successfully, you can run "lsof -i:7654", then you can see information of the process.
+
+Now you can see our main webpage on your local machine. Hit : localhost
+
+If you update, run "ssh stop-server.sh" to stop the server and rebuild the javacode first, then run "ssh start-servers.sh" to restart the server.
