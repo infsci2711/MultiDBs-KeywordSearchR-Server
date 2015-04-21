@@ -57,7 +57,8 @@ And now you should be able to see something very similar to the following if eve
  
 mysqld     5970    mysql   10u  IPv4 3452154      0t0  TCP *:3306 (LISTEN)
 
-3. If you run successfully, you can run "lsof -i:7654", then you can see information of the process.
+3. 
+If you run successfully, you can run "lsof -i:7654", then you can see information of the process.
 
 Now you can see our main webpage on your local machine. Hit : localhost
 
