@@ -39,8 +39,8 @@ kill -9 $(ps aux | grep java | grep multidbskeywordsearchrserverapi-0.1-SNAPSHOT
 cd /opt/project/MultiDBs-KeywordSearchR-Server/MultiDBsKeywordSearchRServerAPI/target
 #nohup java -jar MultiDBsKeywordSearchRServerAPI/target/multidbskeywordsearchrserverapi-0.1-SNAPSHOT.jar /opt/project/MultiDBs-KeywordSearchR-Server/MultiDBsKeywordSearchRServerAPI/src/main/resources/config.properties> log.out 2> error.log < /dev/null &
 
-#nohup java -jar multidbskeywordsearchrserverapi-0.1-SNAPSHOT.jar /opt/project/MultiDBs-KeywordSearchR-Server/MultiDBsKeywordSearchRServerAPI/src/main/resources/config.properties > log.out 2> error.log < /dev/null &
-nohup java -jar multidbskeywordsearchrserverapi-0.1-SNAPSHOT.jar > log.out 2> error.log < /dev/null &
+nohup java -jar multidbskeywordsearchrserverapi-0.1-SNAPSHOT.jar /opt/project/MultiDBs-KeywordSearchR-Server/MultiDBsKeywordSearchRServerAPI/src/main/resources/config.properties > log.out 2> error.log < /dev/null &
+#nohup java -jar multidbskeywordsearchrserverapi-0.1-SNAPSHOT.jar > log.out 2> error.log < /dev/null &
 
 #restart mysql
 sudo service mysql restart
