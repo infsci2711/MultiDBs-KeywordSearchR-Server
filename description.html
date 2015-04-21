@@ -56,14 +56,24 @@
 	<div class="content">
 		<div class="about" id="about">
 			<div class="about-left">
-					<h3>Detailed Description page</h3>
-					<p>This is page includes very (really super very) detailed documentation of our project (not including REST API):</p>
-					<p>The page has the following aspects of project:What are the main parts of our project, algorithms, not easy concepts, and anything important for people outside of INFSCI 2711 class.</p>
-					<p>Use cases:</p>
-<p>Use case 1: MetaStore is able to send REST request to our project once a user enters database information, telling us that a new datasource was added. After receiving request from MetaStore, SQL queries are generated according to the datasource information.</p>
-<p>Use case 2: Our project is able to send REST request to PrestoDB team passing SQL queries and get search results.</p>
-<p>Use case 3: Our project is able to build and update indexes of database records based on the results returned by PrestoDB project.</p>
-<p>Use case 4: Users are able to search for information in all databases by entering one or more keywords. A list of search results are shown on the page containing those keywords, datasource names (id), table names, and column names where the keywords are found.</p>
+					<h3>How to setup</h3>
+						    <p>1. Please download the setup.sh first on your local machine. (Click the download button in the right corner). Suppose you download the setup.sh on /opt. Then run "cd /opt".</p>
+							<p>2. In the terminal, input "sudo chmod +x setup.sh" (without double quotation mark) to modify the permission.</p>
+							<img src="images/1.jpg" alt="web1" align="center" style="width:500px;height:160px"/>
+							<p>3. run "ssh setup.sh"</p>
+							<img src="images/3.jpg" alt="web1" align="center" style="width:500px;height:40px"/>
+							<p>4. When the MySQL is installing, the username you set should be root, and the password should be root too</p>
+							<p>5.If you run successfully, you can run "lsof -i:7654", then you can see information of the process.</p>
+							<p>6.Then you can see our main webpage on your local machine.</p>
+							<p>7.If you update, run "ssh stop-server.sh" first, then run "ssh start-servers.sh" to restart the server.</p>
+					<h3>How this project works with other MultiDBs projects</h3>
+							<P>The Keyword Search Relational project directly collaborates with MetaStore and PrestoDB Query projects. Once a user enters connection information to a new database in MetaStore, a REST request is sent to us with database information as parameter. Then our programs take actions to generate corresponding SQL queries and send them to PrestoDB team by requesting their REST service. After getting the query results from PresoDB, indexes are built for each entry in the databases for more efficient keyword search.</P>
+					
+					<h3>Use cases:</h3>
+<h4>Use case 1:</h4><p>MetaStore is able to send REST request to our project once a user enters database information, telling us that a new datasource was added. After receiving request from MetaStore, SQL queries are generated according to the datasource information.</p>
+<h4>Use case 2:</h4><p>Our project is able to send REST request to PrestoDB team passing SQL queries and get search results.</p>
+<h4>Use case 3:</h4><p>Our project is able to build and update indexes of database records based on the results returned by PrestoDB project.</p>
+<h4>Use case 4:</h4><p>Users are able to search for information in all databases by entering one or more keywords. A list of search results are shown on the page containing those keywords, datasource names (id), table names, and column names where the keywords are found.</p>
 			
 <img src="images/web1.png" alt="web1" align="center" style="width:700px;height:400px"/>
 <p align="center">Figure 1: Home page</p>
@@ -108,98 +118,7 @@
 		</div>
 		<!---->
 
-		<!---->
-		<div class="services" >
-			<div class="container">
-				<div class="services-in">
-					<h3>some  facts</h3>
-				</div>
 
-
-				<div class="service-grids ">
-					<div class="col-md-4 service-grid">
-							<a href="#"><span> </span></a>
-							<h5>Main</h5>
-							<P>TBD</P>
-						</div>
-					<div class="col-md-4 service-grid">
-							<a href="#"><span class="low"> </span></a>
-							<h5>Algorithms</h5>
-							<P>TBD</P>
-						</div>
-						<div class="col-md-4 service-grid">
-							<a href="#"><span class="word-press"> </span></a>
-							<h5>Not easy concepts</h5>
-							<P>TBD</P>
-						</div>
-					<div class="clearfix"> </div>
-				</div>
-
-
-				<div class="service-grids ">
-					<div class="col-md-4 service-grid">
-							<a href="#"><span class="seo"> </span></a>
-							<h5>How this project works with other MultiDBs projects</h5>
-							<P>The Keyword Search Relational project directly collaborates with MetaStore and PrestoDB Query projects. Once a user enters connection information to a new database in MetaStore, a REST request is sent to us with database information as parameter. Then our programs take actions to generate corresponding SQL queries and send them to PrestoDB team by requesting their REST service. After getting the query results from PresoDB, indexes are built for each entry in the databases for more efficient keyword search.</P>
-						</div>
-					<div class="col-md-4 service-grid">
-							<a href="#"><span class="hosting"> </span></a>
-							<h5>requirements to start</h5>
-							<P>TBD</P>
-						</div>
-						<div class="col-md-4 service-grid">
-							<a href="#"><span class="advertising"> </span></a>
-							<h5>How to build from a “fresh” installation of Ubuntu </h5>
-						       	<p>1.Please download the setup.sh first on your local machine.</p>
-							<p>2. In the terminal, input "sudo chmod +x setup.sh" to modify the permission.</p>
-							<p>3.run "ssh setup.sh"</p>
-							<p>4.When the MySQL is installing, the username you set should be root, and the password should be root too</p>
-							<p>5.If you run successfully, you can run "lsof -i:7654", then you can see information of the process.</p>
-							<p>6.Then you can see our main webpage on your local machine.</p>
-							<p>7.If you update, run "ssh stop-server.sh" first, then run "ssh start-servers.sh" to restart the server.</p>
-						</div>
-
-
-					<div class="clearfix"> </div>
-				</div>
-			</div>
-		</div>
-
-		<!---->
-		<div class="fact" id="services">
-			<div class="container">
-				<div class="some-in">
-					<h3>some nerdy facts</h3>
-				</div>
-				<div class="fact-grids ">
-					<div class="col-md-3 fact-grid">
-							<a href="#"><span> </span></a>
-							<b>1</b>
-							<p>project completed</p>
-						</div>
-
-						<div class="col-md-3 fact-grid">
-							<a href="#"><span class="smile"> </span></a>
-								<b>6</b>
-								<p>members</p>
-						</div>
-
-					<div class="col-md-3 fact-grid">
-						<a href="#"><span class="arrow"> </span></a>
-							<b>3725</b>
-							<p>lines of code</p>
-						</div>
-
-					<div class="col-md-3 fact-grid">
-						<a href="#"><span class="clock"> </span></a>
-							<b>233</b>
-							<p>hours spent</p>
-						</div>
-
-					<div class="clearfix"> </div>
-				</div>
-			</div>
-		</div>
 
 </body>
 </html>
