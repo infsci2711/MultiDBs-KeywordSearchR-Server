@@ -5,7 +5,7 @@ import java.util.List;
 import edu.pitt.sis.infsci2711.datasource.viewModels.*;
 
 
-public class DatasourceModel {
+public class DatasourceViewModel {
 	private int id;
 	private String dbType;
 	private String  ipAddress;
@@ -18,11 +18,11 @@ public class DatasourceModel {
 	
 	private List<TableViewModel> tables;
 	
-	public DatasourceModel(){
+	public DatasourceViewModel(){
 		
 	}
 	
-	public DatasourceModel(final String dbType, final String ipAdress, final int port,
+	public DatasourceViewModel(final String dbType, final String ipAdress, final int port,
 			final String username, final String password, final String dbName, 
 			String title, String descripiton){
 		this.setDbType(dbType);
@@ -35,7 +35,7 @@ public class DatasourceModel {
 		this.setDescription(descripiton);
 	}
 	
-	public DatasourceModel(int id, final String dbType, final String ipAdress, final int port,
+	public DatasourceViewModel(int id, final String dbType, final String ipAdress, final int port,
 			final String username, final String password, final String dbName, 
 			String title, String descripiton, List<TableViewModel> tables) {
 		this.setId(id);
