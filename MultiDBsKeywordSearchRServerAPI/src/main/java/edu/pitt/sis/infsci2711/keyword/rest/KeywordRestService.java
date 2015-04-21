@@ -101,6 +101,8 @@ public class KeywordRestService {
 		            QueryViewModel QueryViewModel=new QueryViewModel();
 		            
 		            QueryViewModel.setQuery(q);
+		            logger.info("Going to sleep for 30 seconds hopefully that's enough for presto to restart.");
+		            Thread.sleep(30000);
 		            logger.info("About to run this query on Presto: " + q);
 		            //PUT Request from Jersey Client Example. pass QueryViewModel instance
 		            Response response = JerseyClientUtil.doPut(PropertiesManager.getInstance().getStringProperty("prestostore.rest.base"), PropertiesManager.getInstance().getStringProperty("prestostore.rest.getAllData"), QueryViewModel);
