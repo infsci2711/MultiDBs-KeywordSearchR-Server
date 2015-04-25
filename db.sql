@@ -25,10 +25,10 @@ CREATE TABLE `Index` (
   PRIMARY KEY (`termId`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
-CREATE USER 'keywordsearchrUser'@'localhost' IDENTIFIED BY 'keywordsearchrUser';
-grant all privileges on `keywordsearchr`.* to 'keywordsearchrUser'@'localhost';
+CREATE USER 'searchrUser'@'localhost' IDENTIFIED BY 'searchrUser';
+grant all privileges on `keywordsearchr`.* to 'searchrUser'@'localhost';
 
-CREATE USER 'keywordsearchrUser'@'%' IDENTIFIED BY 'keywordsearchrUser';
-grant all privileges on `keywordsearchr`.* to 'keywordsearchrUser'@'%';
+CREATE USER 'searchrUser'@'%' IDENTIFIED BY 'searchrUser';
+grant all privileges on `keywordsearchr`.* to 'searchrUser'@'%';
 
 FLUSH PRIVILEGES;

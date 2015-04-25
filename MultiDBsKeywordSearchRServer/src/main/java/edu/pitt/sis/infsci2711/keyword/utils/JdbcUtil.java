@@ -9,9 +9,9 @@ public static final String DEFAULT_HOST = "localhost";
 	
 	public static final int DEFAULT_PORT = 3306;
 	
-	public static final String DEFAULT_USER = "keywordsearchrUser"; //CHANGE TO YOUR MYSQL USER NAME
+	public static final String DEFAULT_USER = "searchrUser"; //CHANGE TO YOUR MYSQL USER NAME
 	
-	public static final String DEFAULT_PASSWOD = "keywordsearchrUser"; // CHANGE TO YOUR MYSQL PASSWORD
+	public static final String DEFAULT_PASSWOD = "searchrUser"; // CHANGE TO YOUR MYSQL PASSWORD
 	
 	public static final String DEFAULT_DATABASE = "keywordsearchr";
 	
