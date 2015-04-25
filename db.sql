@@ -10,12 +10,6 @@ CREATE TABLE `Datasource` (
   `did` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `Index`
---
-
 CREATE TABLE `Index` (
   `termId` int(11) NOT NULL AUTO_INCREMENT,
   `dbTerm` varchar(45) DEFAULT NULL,
