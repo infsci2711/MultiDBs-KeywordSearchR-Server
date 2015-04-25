@@ -23,18 +23,18 @@ ENV M2 $M2_HOME/bin
 
 ENV PATH $M2:$PATH
 
-RUN useradd -d /home/keyworkdsearchr keyworkdsearchr
-RUN mkdir -p /home/keyworkdsearchr
-RUN chown keyworkdsearchr /home/keyworkdsearchr
+RUN useradd -d /home/keywordsearchr keywordsearchr
+RUN mkdir -p /home/keywordsearchr
+RUN chown keywordsearchr /home/keywordsearchr
 
-RUN echo "keyworkdsearchr:keyworkdsearchr" | chpasswd
+RUN echo "keywordsearchr:keywordsearchr" | chpasswd
 
-COPY docker-entrypoint.sh /home/keyworkdsearchr/entrypoint.sh
-COPY db.sql /home/keyworkdsearchr/dbinit.sql
+COPY docker-entrypoint.sh /home/keywordsearchr/entrypoint.sh
+COPY db.sql /home/keywordsearchr/db.sql
 
-RUN chmod -R 777 /home/keyworkdsearchr
+RUN chmod -R 777 /home/keywordsearchr
 
-ENTRYPOINT ["/home/keyworkdsearchr/entrypoint.sh"]
+ENTRYPOINT ["/home/keywordsearchr/entrypoint.sh"]
 
 EXPOSE 22
 EXPOSE 7654
