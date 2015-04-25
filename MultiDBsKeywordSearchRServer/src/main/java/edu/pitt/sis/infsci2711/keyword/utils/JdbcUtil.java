@@ -9,11 +9,11 @@ public static final String DEFAULT_HOST = "localhost";
 	
 	public static final int DEFAULT_PORT = 3306;
 	
-	public static final String DEFAULT_USER = "root"; //CHANGE TO YOUR MYSQL USER NAME
+	public static final String DEFAULT_USER = "keywordsearchrUser"; //CHANGE TO YOUR MYSQL USER NAME
 	
-	public static final String DEFAULT_PASSWOD = "root"; // CHANGE TO YOUR MYSQL PASSWORD
+	public static final String DEFAULT_PASSWOD = "keywordsearchrUser"; // CHANGE TO YOUR MYSQL PASSWORD
 	
-	public static final String DEFAULT_DATABASE = "mysql";
+	public static final String DEFAULT_DATABASE = "keywordsearchr";
 	
 	public static Connection getConnection() throws Exception {
 		Class.forName("com.mysql.jdbc.Driver");

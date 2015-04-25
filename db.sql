@@ -1,4 +1,6 @@
-USE `mysql`;
+CREATE DATABASE  IF NOT EXISTS `keywordsearchr` /*!40100 DEFAULT CHARACTER SET latin1 */;
+
+USE `keywordsearchr`;
 
 --
 -- Table structure for table `Datasource`
@@ -6,7 +8,7 @@ USE `mysql`;
 
 CREATE TABLE `Datasource` (
   `did` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -15,29 +17,18 @@ CREATE TABLE `Datasource` (
 --
 
 CREATE TABLE `Index` (
-`termId` int(11) NOT NULL,
+  `termId` int(11) NOT NULL AUTO_INCREMENT,
   `dbTerm` varchar(45) DEFAULT NULL,
   `databaseName` varchar(45) DEFAULT NULL,
   `tableName` varchar(45) DEFAULT NULL,
-  `columnName` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=949 ;
+  `columnName` varchar(45) DEFAULT NULL,
+  PRIMARY KEY ('termId')
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
---
--- Indexes for dumped tables
---
+CREATE USER 'keywordsearchrUser'@'localhost' IDENTIFIED BY 'keywordsearchrUser';
+grant all privileges on `keywordsearchr`.* to 'keywordsearchrUser'@'localhost';
 
---
--- Indexes for table `Index`
---
-ALTER TABLE `Index`
- ADD PRIMARY KEY (`termId`);
+CREATE USER 'keywordsearchrUser'@'%' IDENTIFIED BY 'keywordsearchrUser';
+grant all privileges on `keywordsearchr`.* to 'keywordsearchrUser'@'%';
 
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `Index`
---
-ALTER TABLE `Index`
-MODIFY `termId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=949;
+FLUSH PRIVILEGES;

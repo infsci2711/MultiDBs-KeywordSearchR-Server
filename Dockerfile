@@ -4,7 +4,8 @@ MAINTAINER Evgeny Karataev <Karataev.Evgeny@gmail.com>
 RUN apt-get update && apt-get install -y \
     openssh-server \
     openjdk-7-jdk \
-    curl 
+    curl \
+    git
 
 RUN mkdir -p /var/run/sshd
 
@@ -22,7 +23,22 @@ ENV M2 $M2_HOME/bin
 
 ENV PATH $M2:$PATH
 
+RUN useradd -d /home/keyworkdsearchr keyworkdsearchr
+RUN mkdir -p /home/keyworkdsearchr
+RUN chown keyworkdsearchr /home/keyworkdsearchr
+
+RUN echo "keyworkdsearchr:keyworkdsearchr" | chpasswd
+
+COPY docker-entrypoint.sh /home/keyworkdsearchr/entrypoint.sh
+COPY db.sql /home/keyworkdsearchr/dbinit.sql
+
+RUN chmod -R 777 /home/keyworkdsearchr
+
+ENTRYPOINT ["/home/keyworkdsearchr/entrypoint.sh"]
 
 EXPOSE 22
+EXPOSE 7654
+
+VOLUME /opt/project/deployed
 
 CMD ["/usr/sbin/sshd", "-D"]
