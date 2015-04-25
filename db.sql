@@ -22,7 +22,7 @@ CREATE TABLE `Index` (
   `databaseName` varchar(45) DEFAULT NULL,
   `tableName` varchar(45) DEFAULT NULL,
   `columnName` varchar(45) DEFAULT NULL,
-  PRIMARY KEY ('termId')
+  PRIMARY KEY (`termId`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 CREATE USER 'keywordsearchrUser'@'localhost' IDENTIFIED BY 'keywordsearchrUser';
